@@ -3,8 +3,8 @@ The starter code for the major group project.
 
 Group members (3-5) (no Student IDs, only names):
 1. Group Member1 (tilovashahrin)
-2. Group Member2 (github_username2)
-3. Group Member3 (github_username3)
+2. Heather Cooper (heathercooper-otu)
+3. Riya Shaik(riya9255)
 4. Group Member4 (github_username4)
 5. Group Member5 (github_username5)
 
