@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'timeline.dart';
 
 class MainScreen extends StatefulWidget {
   MainScreen({Key key, this.title}) : super(key: key);
@@ -8,13 +9,21 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  var _tweets = timeline_dataSource.generatePosts();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // body: ListView(
-        // children: <Widget>[
-        // ], //ListView
-        // ),
+        body: ListView(
+        children: <Widget>[
+          TweetWidget(
+            tweet: _tweets[0],
+          ),
+          TweetWidget(
+            tweet: _tweets[1]
+          ),
+        ], //ListView
+        ),
       bottomNavigationBar: BottomAppBar(
         child: Row(
           mainAxisSize: MainAxisSize.max,
@@ -28,7 +37,8 @@ class _MainScreenState extends State<MainScreen> {
                     context,
                     MaterialPageRoute(
                     builder: (context) => MainScreen(),
-                ),
+                    ),
+                );
               },
               icon: Icon(Icons.home, size: 40),
             ),
@@ -38,7 +48,8 @@ class _MainScreenState extends State<MainScreen> {
                     context,
                     MaterialPageRoute(
                     //builder: (context) => _likeScreen(),
-                ),
+                    ),
+                );
               },
               icon: Icon(Icons.favorite, size: 40),
             ),
