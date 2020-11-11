@@ -1,24 +1,28 @@
+//import 'package:flutt/home.page.dart';
+import 'package:flutt/loginPage.dart';
+import 'package:flutt/auth.service.dart';
 import 'package:flutter/material.dart';
-import 'main_screen.dart';
+import 'package:flutt/main_screen.dart';
+AuthService appAuth = new AuthService();
 
-void main() =>  runApp(MyApp());
+void main() async {
+  // Set default home.
+  Widget _defaultHome = new LoginPage();
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: MainScreen(title: 'Digital Itinerary'),
-    );
+  // Get result of the login function.
+  bool _result = await appAuth.login();
+  if (_result) {
+    _defaultHome = new MainScreen();
   }
+
+  // Run app!
+  runApp(new MaterialApp(
+    title: 'App',
+    home: _defaultHome,
+    routes: <String, WidgetBuilder>{
+      // Set routes for using the Navigator.
+      '/home': (BuildContext context) =>  new MainScreen(),
+      '/login': (BuildContext context) => new LoginPage()
+    },
+  ));
 }
