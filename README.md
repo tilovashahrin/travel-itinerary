@@ -2,7 +2,7 @@
 The starter code for the major group project.
 
 Group members (3-5) (no Student IDs, only names):
-1. Group Member1 (tilovashahrin)
+1. Tilova Shahrin (tilovashahrin)
 2. Heather Cooper (heathercooper-otu)
 3. Riya Shaik(riya9255)
 4. Group Member4 (github_username4)
