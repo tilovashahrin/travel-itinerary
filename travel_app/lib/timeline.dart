@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'like_screen.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 //tilova
 class timeline_dataSource{
   static List<User> generateUsers(){
@@ -79,7 +75,6 @@ class TweetWidget extends StatefulWidget{
 
 class _TweetWidgetState extends State<TweetWidget>{
   Tweet tweet;
-  String _selectedType = 'All';
 
   _TweetWidgetState({this.tweet});
 
@@ -147,10 +142,8 @@ class _TweetWidgetState extends State<TweetWidget>{
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         _buildIconPair(Icon(Icons.remove_red_eye, color: Colors.grey.shade500), '${tweet.numViews}'),
-        _buildLikeButton(context),
-        //_buildIconPair(Icon(Icons.favorite_border, color: Colors.grey.shade500), '${tweet.numLikes}'),
+        _buildIconPair(Icon(Icons.favorite_border, color: Colors.grey.shade500), '${tweet.numLikes}'),
         _buildIconPair(Icon(Icons.share, color: Colors.grey.shade500), null),
-
       ],
     );
   }
@@ -165,46 +158,5 @@ class _TweetWidgetState extends State<TweetWidget>{
         ],
       ),
     );
-  }
-
-  bool liked = false;
-  _likePressed(){
-    setState(() {
-      liked = !liked;
-      if(liked == true){
-        tweet.numLikes += 1;
-      }
-      else{
-        tweet.numLikes -= 1;
-      }
-      //Likes();
-    });
-  }
-
-  Widget _buildLikeButton(BuildContext context) {
-    return Container(
-      child: Row(
-        children: [
-          IconButton(
-            icon: Icon(liked ? Icons.favorite : Icons.favorite_border,
-                color: liked ? Colors.red : Colors.grey.shade500),
-            onPressed: ()=> _likePressed(),
-          ),
-          Container(padding: EdgeInsets.only(right: 1.0)),
-          '${tweet.numLikes}' == null ? Container() : Text('${tweet.numLikes}'),
-        ],
-      ),
-    );
-  }
-
-  Future<QuerySnapshot> getPosts() async{
-    if (_selectedType == 'All') {
-      return await FirebaseFirestore.instance.collection('posts').get();
-    } else {
-      return await FirebaseFirestore.instance
-          .collection('posts')
-          .where('type', isEqualTo: _selectedType)
-          .get();
-    }
   }
 }// TODO Implement this library.

@@ -1,5 +1,6 @@
 import 'main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'Header.dart';
 import 'wrapInput.dart';
 
@@ -8,9 +9,9 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      // appBar: new AppBar(
-      //   title: new Text('Login'),
-      // ),
+      appBar: new AppBar(
+        title: new Text('Login'),
+      ),
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(

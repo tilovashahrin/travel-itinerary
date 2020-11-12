@@ -1,8 +1,6 @@
 //tilova  (Riya incorp login to homepage)
 import 'package:flutter/material.dart';
 import 'timeline.dart';
-import 'like_screen.dart';
-import 'trip_manager/list_trips.dart';
 
 class MainScreen extends StatefulWidget {
   MainScreen({Key key, this.title}) : super(key: key);
@@ -53,7 +51,7 @@ class _MainScreenState extends State<MainScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => Likes(),
+                    //builder: (context) => _likeScreen(),
                   ),
                 );
               },
@@ -71,12 +69,11 @@ class _MainScreenState extends State<MainScreen> {
               icon: Icon(Icons.add, size: 40),
             ),
             IconButton(
-            //view user's trips  
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => TripList(),
+                    //builder: (context) => _EventScreen(),
                   ),
                 );
               },

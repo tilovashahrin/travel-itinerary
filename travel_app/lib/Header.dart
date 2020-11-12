@@ -9,7 +9,7 @@ class Header extends StatelessWidget{
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Center(
-            child: Text("Login", style: TextStyle(color: Colors.white, fontSize: 40),),
+            child: Text("Travel App Login", style: TextStyle(color: Colors.white, fontSize: 40),),
           ),
           SizedBox(height: 10,),
           Center(
