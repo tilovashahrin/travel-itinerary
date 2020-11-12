@@ -3,6 +3,7 @@ import 'add_trip.dart';
 import 'trip.dart';
 import 'utils.dart';
 import 'list_days.dart';
+import 'local_storage/trip_model/trip_model.dart';
 
 class TripList extends StatefulWidget {
   TripList({Key key, this.title}) : super(key: key);
@@ -14,10 +15,14 @@ class TripList extends StatefulWidget {
 
 class _TripListState extends State<TripList> {
   List<Trip> _trips = [];
+  int _selectedIndex = -1;
+  int _lastInsertedId = 0;
+  TripModel _model = new TripModel();
 
   //temporary UI
   @override
   Widget build(BuildContext context) {
+    _getTrips();
     return Scaffold(
       appBar: AppBar(
         title: Text("Scheduled Trips"), //add date to title
@@ -55,6 +60,11 @@ class _TripListState extends State<TripList> {
     );
   }
 
+  Future<void> _getTrips() async {
+    var t = await _model.getAllTrips();
+    setState(() {_trips = t;});
+  }
+
   Future<void> _addTrip() async {
     var e = await Navigator.push(
       context,
@@ -64,6 +74,8 @@ class _TripListState extends State<TripList> {
     if (e != null){ 
       //if user enters trip
       Trip newTrip = e;
+      //insert new trip into database
+      _lastInsertedId = await _model.insertTrip(newTrip);
       setState(() {
         _trips.add(newTrip);
       });

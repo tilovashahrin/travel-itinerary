@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 //import 'package:flutter/auth.service.dart';
-=======
 import 'auth.service.dart';
->>>>>>> e9d36d76803798735fbd448f364ed0be8ed7cf4d
 
 //login button
 import 'main.dart';

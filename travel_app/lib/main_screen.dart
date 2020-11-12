@@ -1,11 +1,8 @@
 //tilova  (Riya incorp login to homepage)
 import 'package:flutter/material.dart';
 import 'timeline.dart';
-<<<<<<< HEAD
 import 'like_screen.dart';
-=======
 import 'trip_manager/list_trips.dart';
->>>>>>> e9d36d76803798735fbd448f364ed0be8ed7cf4d
 
 class MainScreen extends StatefulWidget {
   MainScreen({Key key, this.title}) : super(key: key);
