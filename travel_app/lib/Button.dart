@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutt/auth.service.dart';
+import 'auth.service.dart';
 
 import 'main.dart';
 class Button extends StatelessWidget {

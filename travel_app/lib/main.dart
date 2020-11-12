@@ -1,8 +1,8 @@
 //import 'package:flutt/home.page.dart';
-import 'package:flutt/loginPage.dart';
-import 'package:flutt/auth.service.dart';
+import 'loginPage.dart';
+import 'auth.service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutt/main_screen.dart';
+import 'main_screen.dart';
 AuthService appAuth = new AuthService();
 
 void main() async {
