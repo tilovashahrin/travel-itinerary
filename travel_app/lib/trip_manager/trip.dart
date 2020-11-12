@@ -15,13 +15,15 @@ class Trip {
   //initialize list of days in trip
   void initDays(){
     int dayCount = endDate.difference(startDate).inDays + 1; //get number of days trip is
-    List<Day> days = List<Day>();
+    List<Day> tripDays = new List<Day>();
     DateTime dateTracker = startDate;
     for (int i = 1; i <= dayCount; i++){
       Day d = Day(dayNum: i, date: dateTracker);
-      days.add(d);
+      d.initDay();
+      tripDays.add(d);
       dateTracker = new DateTime(dateTracker.year, dateTracker.month, dateTracker.day + 1); //increment day
     }
+    this.days = tripDays;
   }
 
 }
@@ -38,18 +40,19 @@ class Day {
     dayString = toDateString(date);
   }
 
-  void addEvent(Event event){
-    events.add(event);
-    //add verification that no events overlap
-  }
+  // void addEvent(Event event){
+  //   event.date = this.date;
+  //   events.add(event);
+  //   //add verification that no events overlap
+  // }
 
 }
 
 class Event {
   String name, location, description;
-  TimeOfDay startTime, endtime; //start and end times of event, to be picked with timePicker
+  TimeOfDay startTime, endTime; //start and end times of event, to be picked with timePicker
   DateTime date;
 
   //constructor
-  Event({this.name, this.location, this.description, this.startTime, this.endtime, this.date});
+  Event({this.name, this.location, this.description, this.startTime, this.endTime, this.date});
 }

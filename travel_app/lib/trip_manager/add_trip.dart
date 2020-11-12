@@ -21,7 +21,7 @@ class _AddTripState extends State<AddTrip> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      title: Text(widget.title),
+      title: Text("Create Trip"),
       ),
       body:
         SingleChildScrollView(
@@ -46,7 +46,7 @@ class _AddTripState extends State<AddTrip> {
                     }
                   ),
                 ),
-            //Species Section
+            //Location
               Container(
                 child:
                   Text("Location: ", textScaleFactor: 1, textAlign: TextAlign.left),
@@ -115,7 +115,8 @@ class _AddTripState extends State<AddTrip> {
       ),
         ),
       //Save button
-        floatingActionButton: FloatingActionButton(
+        floatingActionButton: Builder(
+        builder: (context) =>  FloatingActionButton(
           onPressed: () {
             //if all fields have been changed and dates have been selected
             if (name != null && location != null &&  description!= null
@@ -130,10 +131,14 @@ class _AddTripState extends State<AddTrip> {
               entry.initDays();
               Navigator.of(context).pop(entry); //return new trip
             }
+            //show snackbar if some fields incomplete
+            var snackbar = SnackBar(content: Text('Fill out all fields.'));
+            Scaffold.of(context).showSnackBar(snackbar);
           },
           child: Icon(Icons.save),
           backgroundColor: Colors.blue,
         )
+    )
       );
   }
 

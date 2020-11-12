@@ -1,10 +1,17 @@
+<<<<<<< HEAD
 import 'home.page.dart';
+=======
+//import 'package:flutt/home.page.dart';
+>>>>>>> e9d36d76803798735fbd448f364ed0be8ed7cf4d
 import 'loginPage.dart';
 import 'auth.service.dart';
 import 'package:flutter/material.dart';
 import 'main_screen.dart';
+<<<<<<< HEAD
 import 'package:firebase_core/firebase_core.dart';
 
+=======
+>>>>>>> e9d36d76803798735fbd448f364ed0be8ed7cf4d
 AuthService appAuth = new AuthService();
 
 void main() async {
