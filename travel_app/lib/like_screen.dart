@@ -13,9 +13,9 @@ class LikesState extends State<Likes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: new AppBar(
+      appBar: new AppBar(
         title: new Text('Liked Posts'),
-    ),
+      ),
       body: ListView(
         // children: <Widget>[
         //   TweetWidget(

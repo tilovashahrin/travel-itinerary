@@ -29,7 +29,7 @@ class Trip {
     this.days = tripDays;
   }
 
-    //fromMap function
+  //fromMap function
   Trip.fromMap(Map<String, dynamic> m){
     this.id = m['id'];
     this.name = m['name'];
@@ -71,11 +71,11 @@ class Day {
     dayString = toDateString(date);
   }
 
-  // void addEvent(Event event){
-  //   event.date = this.date;
-  //   events.add(event);
-  //   //add verification that no events overlap
-  // }
+// void addEvent(Event event){
+//   event.date = this.date;
+//   events.add(event);
+//   //add verification that no events overlap
+// }
 
 }
 

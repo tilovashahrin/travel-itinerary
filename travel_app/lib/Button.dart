@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+//import 'package:flutter/auth.service.dart';
 import 'auth.service.dart';
 
+//login button
 import 'main.dart';
 class Button extends StatelessWidget {
   @override
@@ -14,9 +16,8 @@ class Button extends StatelessWidget {
       ),
       child: Center(
         child: new RaisedButton(
-            color: Colors.cyan,
             child: new Text(
-                'Login'
+                'Login for App)'
             ),
             onPressed: () {
               appAuth.login().then((result) {
