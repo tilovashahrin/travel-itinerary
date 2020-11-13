@@ -24,39 +24,39 @@ class _TripListState extends State<TripList> {
   Widget build(BuildContext context) {
     _getTrips();
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Scheduled Trips"), //add date to title
-      ),
-      body: Align(
-        alignment: Alignment.topLeft,
-        //List of trips
-        child: ListView.builder(
-          padding: const EdgeInsets.all(5),
-          itemCount: _trips.length,
-          itemBuilder: (BuildContext context, int index) {
-          return GestureDetector(
-              onTap: () {
-                _showDayList(_trips[index], index);
-              },
-            child: Container (
-                  child: ListTile(
-                  title: Text(_trips[index].name + " " + _trips[index].location),
-                  subtitle: Text(toDateString(_trips[index].startDate) + " - " + toDateString(_trips[index].endDate)),
-                  )
-            )
-          );
-          },
+        appBar: AppBar(
+          title: Text("Scheduled Trips"), //add date to title
         ),
-      ),
+        body: Align(
+          alignment: Alignment.topLeft,
+          //List of trips
+          child: ListView.builder(
+            padding: const EdgeInsets.all(5),
+            itemCount: _trips.length,
+            itemBuilder: (BuildContext context, int index) {
+              return GestureDetector(
+                  onTap: () {
+                    _showDayList(_trips[index], index);
+                  },
+                  child: Container (
+                      child: ListTile(
+                        title: Text(_trips[index].name + " " + _trips[index].location),
+                        subtitle: Text(toDateString(_trips[index].startDate) + " - " + toDateString(_trips[index].endDate)),
+                      )
+                  )
+              );
+            },
+          ),
+        ),
 
-    //Add Trip Button
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _addTrip();
-        },
-        child: Icon(Icons.add),
-        backgroundColor: Colors.blue,
-      )
+        //Add Trip Button
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            _addTrip();
+          },
+          child: Icon(Icons.add),
+          backgroundColor: Colors.blue,
+        )
     );
   }
 
@@ -67,11 +67,11 @@ class _TripListState extends State<TripList> {
 
   Future<void> _addTrip() async {
     var e = await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) {
-        return AddTrip();
+        context,
+        MaterialPageRoute(builder: (context) {
+          return AddTrip();
         }));
-    if (e != null){ 
+    if (e != null){
       //if user enters trip
       Trip newTrip = e;
       //insert new trip into database
@@ -84,10 +84,10 @@ class _TripListState extends State<TripList> {
 
   Future<void> _showDayList(Trip currentTrip, int currentIndex) async {
     var d = await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) {
-        return DayList(trip : currentTrip); //navigate to page with list of trip's days
-      }));
+        context,
+        MaterialPageRoute(builder: (context) {
+          return DayList(trip : currentTrip); //navigate to page with list of trip's days
+        }));
     setState(() {
       _trips[currentIndex].days = d; //save any changes to days
     });
