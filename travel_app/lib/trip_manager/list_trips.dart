@@ -4,6 +4,8 @@ import 'trip.dart';
 import 'utils.dart';
 import 'list_days.dart';
 import 'local_storage/trip_model/trip_model.dart';
+import 'local_storage/day_model/day_model.dart';
+import 'local_storage/assemble_trips.dart';
 
 class TripList extends StatefulWidget {
   TripList({Key key, this.title}) : super(key: key);
@@ -15,9 +17,10 @@ class TripList extends StatefulWidget {
 
 class _TripListState extends State<TripList> {
   List<Trip> _trips = [];
-  int _selectedIndex = -1;
-  int _lastInsertedId = 0;
-  TripModel _model = new TripModel();
+  int _lastInsertedTripId = 0;
+  int _lastInsertedDayId = 0;
+  TripModel _tripModel = new TripModel();
+  DayModel _dayModel = new DayModel();
 
   //temporary UI
   @override
@@ -61,7 +64,7 @@ class _TripListState extends State<TripList> {
   }
 
   Future<void> _getTrips() async {
-    var t = await _model.getAllTrips();
+    var t = await assembleTrips();
     setState(() {_trips = t;});
   }
 
@@ -75,7 +78,12 @@ class _TripListState extends State<TripList> {
       //if user enters trip
       Trip newTrip = e;
       //insert new trip into database
-      _lastInsertedId = await _model.insertTrip(newTrip);
+      _lastInsertedTripId = await _tripModel.insertTrip(newTrip);
+      //insert days created by trip into database
+      for (int i = 0; i < newTrip.days.length; i++){
+        _lastInsertedDayId = await _dayModel.insertDay(newTrip.days[i]);
+      }
+
       setState(() {
         _trips.add(newTrip);
       });
@@ -88,8 +96,13 @@ class _TripListState extends State<TripList> {
       MaterialPageRoute(builder: (context) {
         return DayList(trip : currentTrip); //navigate to page with list of trip's days
       }));
+
+      //save any changes to days
+      for (int i = 0; i < d.length; i++){
+        _lastInsertedDayId = await _dayModel.insertDay(d[i]);
+      }
     setState(() {
-      _trips[currentIndex].days = d; //save any changes to days
+      _trips[currentIndex].days = d;
     });
   }
 

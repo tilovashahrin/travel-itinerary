@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'add_event.dart';
 import 'trip.dart';
+import 'local_storage/event_model/event_model.dart';
 
 class EventList extends StatefulWidget {
   EventList({Key key, this.title, this.day}) : super(key: key);
@@ -14,6 +15,9 @@ class EventList extends StatefulWidget {
 class _EventListState extends State<EventList> {
   List<Event> _events = [];
   int eventNum;
+  int _lastInsertedId = 0;
+  EventModel _model = new EventModel();
+
   //temporary UI
   @override
   Widget build(BuildContext context) {
@@ -54,7 +58,7 @@ class _EventListState extends State<EventList> {
     //Add Event Button
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _addEvent();
+          _addEvent(widget.day);
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.blue,
@@ -62,7 +66,7 @@ class _EventListState extends State<EventList> {
     );
   }
 
-  Future<void> _addEvent() async {
+  Future<void> _addEvent(Day d) async {
     //navigate to grade form page
     var e = await Navigator.push(
       context,
@@ -72,6 +76,9 @@ class _EventListState extends State<EventList> {
     if (e != null){ 
       //if user enters event
       Event newEvent = e;
+      newEvent.dayId = d.id;
+      //insert new event into database
+      _lastInsertedId = await _model.insertEvent(newEvent);
       setState(() {
         _events.add(newEvent);
         widget.day.events = _events;

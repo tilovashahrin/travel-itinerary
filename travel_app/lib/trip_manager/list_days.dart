@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'list_events.dart';
 import 'trip.dart';
 import 'utils.dart';
+import 'local_storage/day_model/day_model.dart';
 
 //Page to list each day of a trip. When a day is tapped the user will be shown a list of the day's event.
 
@@ -16,6 +17,10 @@ class DayList extends StatefulWidget {
 
 class _DayListState extends State<DayList> {
   List<Day> _days;
+  int _lastInsertedId = 0;
+  DayModel _model = new DayModel();
+
+
   //temporary UI
   @override
   Widget build(BuildContext context) {
@@ -57,8 +62,9 @@ class _DayListState extends State<DayList> {
       MaterialPageRoute(builder: (context) {
         return EventList(day : currentDay); //navigate to page with list of day's events
       }));
-    setState(() {
       _days[currentIndex].events = e; //save any changes to events list
-    });
+    _lastInsertedId = await _model.insertDay(_days[currentIndex]);
+    setState(() {});
+
   }
 }

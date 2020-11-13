@@ -1,6 +1,7 @@
 //tilova  (Riya incorp login to homepage)
 import 'package:flutter/material.dart';
 import 'timeline.dart';
+import 'trip_manager/list_trips.dart';
 
 class MainScreen extends StatefulWidget {
   MainScreen({Key key, this.title}) : super(key: key);
@@ -73,7 +74,7 @@ class _MainScreenState extends State<MainScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    //builder: (context) => _EventScreen(),
+                    builder: (context) => TripList(),
                   ),
                 );
               },
