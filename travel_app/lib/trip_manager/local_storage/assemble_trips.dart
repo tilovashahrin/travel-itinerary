@@ -19,27 +19,29 @@ Future<List<Trip>> assembleTrips() async {
 
   //loop for trips
   for (int i = 0; i < t.length; i++){
+    List<Day> days = [];
     daysFound = 0;
     //loop for days
     for (int j = 0; j < d.length; j++){
+      List<Event> events = [];
       //check if day's trip id matches current trip
       if (t[i].id == d[j].tripId){
-        daysFound = 1;
         //loop for events
           for (int k = 0; k < e.length; k++){
           //check if event's day id matches current day
             if (d[j].id == e[k].dayId){
-              d[j].events.add(e[k]);
+              //add event to event list
+              events.add(e[k]);
             }
           }
-        //add day to current trip
-        t[i].days.add(d[j]);
+        //set day's events
+        d[j].events = events;
+        //add day to list
+        days.add(d[j]);
         }
     }
-    if (daysFound == 0){
-      //trip's days need to be initialized
-      t[i].initDays();
-    }
+    //set trip's days
+    t[i].days= days;
   }
 
   //return list of assembled trips

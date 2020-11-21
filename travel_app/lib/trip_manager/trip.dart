@@ -3,14 +3,12 @@ import 'utils.dart';
 import 'package:intl/intl.dart';
 
 class Trip {
+  //add user id when accounts implemented
   List<Day> days = [];
   String name, description;
   String location; //change to list later for multiple locations? 
   DateTime startDate, endDate; //start and end date of trip
   int id; //id for databae
-
-  //single placeholder image for testing UI
-  //Image tripPhoto = Image.network("https://via.placeholder.com/600/771796");
 
   //constructor
   Trip({this.days, this.name, this.location, this.description, this.startDate, this.endDate, this.id});
@@ -30,7 +28,7 @@ class Trip {
     this.days = tripDays;
   }
 
-  //fromMap function
+    //fromMap function
   Trip.fromMap(Map<String, dynamic> m){
     this.id = m['id'];
     this.name = m['name'];
@@ -73,11 +71,11 @@ class Day {
     this.dayString = toDateString(date);
   }
 
-// void addEvent(Event event){
-//   event.date = this.date;
-//   events.add(event);
-//   //add verification that no events overlap
-// }
+  // void addEvent(Event event){
+  //   event.date = this.date;
+  //   events.add(event);
+  //   //add verification that no events overlap
+  // }
 
     Day.fromMap(Map<String, dynamic> m){
     this.id = m['id'];

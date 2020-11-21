@@ -14,22 +14,22 @@ class EventList extends StatefulWidget {
 
 class _EventListState extends State<EventList> {
   List<Event> _events = [];
-  int eventNum;
+  int eventNum = 0;
   int _lastInsertedId = 0;
   EventModel _model = new EventModel();
+
+  void initState() {
+    if (widget.day.events != null){
+    _events = widget.day.events;
+    eventNum = _events.length;
+    }
+    super.initState();
+  }
 
   //temporary UI
   @override
   Widget build(BuildContext context) {
-    if (widget.day.events != null){
-    _events = widget.day.events;
-    }
-    if (_events != null){
-    eventNum = _events.length;
-    }
-    else {
-      eventNum = 0;
-    }
+
     return Scaffold(
       appBar: AppBar(
         //add date to title
@@ -38,7 +38,7 @@ class _EventListState extends State<EventList> {
         ),
       body: Align(
         alignment: Alignment.topLeft,
-        //List of entities
+        //List of events
         child: ListView.builder(
           padding: const EdgeInsets.all(5),
           itemCount: eventNum,
@@ -67,13 +67,12 @@ class _EventListState extends State<EventList> {
   }
 
   Future<void> _addEvent(Day d) async {
-    //navigate to grade form page
-    var e = await Navigator.push(
-      context,
+    //navigate to add event page
+    var e = await Navigator.push(context,
       MaterialPageRoute(builder: (context) {
         return AddEvent();
-        }));
-    if (e != null){ 
+      }));
+    if (e != null){
       //if user enters event
       Event newEvent = e;
       newEvent.dayId = d.id;
@@ -81,10 +80,8 @@ class _EventListState extends State<EventList> {
       _lastInsertedId = await _model.insertEvent(newEvent);
       setState(() {
         _events.add(newEvent);
-        widget.day.events = _events;
+        eventNum = _events.length;
       });
     }
   }
-
-
 }

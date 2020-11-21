@@ -1,4 +1,3 @@
-<<<<<<< 81f21fa6071bf4e07056d11ff944e9fe105c0eea
 # Major Group Project
 The starter code for the major group project.
 
@@ -6,8 +5,6 @@ Group members (3-5) (no Student IDs, only names):
 1. Tilova Shahrin (tilovashahrin)
 2. Heather Cooper (heathercooper-otu)
 3. Riya Shaik(riya9255)
-4. Group Member4 (github_username4)
-5. Group Member5 (github_username5)
 
 ## Overview
 This group project is designed for you to demonstrate the skills that you have learned in this course.  The final project that you submit in the last week of classes will be a completed mobile application.  Non-functional requirements, especially those associated with production-readiness, will be considered extremely important when marking this project.  You are expected to work in a group of three to five students when completing this project.  Students are not permitted to work alone on the project, as this eliminates one of the learning objectives of this assessment.  
@@ -132,21 +129,3 @@ Of course, you can always ask the TA for help!  However, learning how to find th
 
 ## How to Submit
 Create your flutter project, and copy it into this folder, commit, and then push your code to this repository to submit your major group project.
-=======
-# flutt
-
-A new Flutter application.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
->>>>>>> login created and linked to homepage

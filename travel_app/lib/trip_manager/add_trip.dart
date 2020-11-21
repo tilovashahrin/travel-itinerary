@@ -128,7 +128,6 @@ class _AddTripState extends State<AddTrip> {
                   description: description,
                   startDate: startDate,
                   endDate: endDate);
-              entry.initDays();
               Navigator.of(context).pop(entry); //return new trip
             }
             //show snackbar if some fields incomplete

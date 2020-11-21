@@ -20,11 +20,14 @@ class _DayListState extends State<DayList> {
   int _lastInsertedId = 0;
   DayModel _model = new DayModel();
 
+  void initState() {
+    _days = widget.trip.days;    
+    super.initState();
+  }
 
   //temporary UI
   @override
   Widget build(BuildContext context) {
-    _days = widget.trip.days;    
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.trip.name + " Days"),
@@ -37,7 +40,7 @@ class _DayListState extends State<DayList> {
           padding: const EdgeInsets.all(5),
           itemCount: _days.length,
           itemBuilder: (BuildContext context, int index) {
-            //day
+          //day
             return GestureDetector(
               onTap: () {
                 _showEventList(_days[index], index);
@@ -62,9 +65,9 @@ class _DayListState extends State<DayList> {
       MaterialPageRoute(builder: (context) {
         return EventList(day : currentDay); //navigate to page with list of day's events
       }));
+    setState(() {
       _days[currentIndex].events = e; //save any changes to events list
-    _lastInsertedId = await _model.insertDay(_days[currentIndex]);
-    setState(() {});
-
+    });
+    _model.updateDay(_days[currentIndex]); //update day in database
   }
 }
