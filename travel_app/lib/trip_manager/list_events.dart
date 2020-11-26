@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'add_event.dart';
 import 'trip.dart';
 import 'local_storage/event_model/event_model.dart';
+import 'event_notifications.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz;
 
 class EventList extends StatefulWidget {
   EventList({Key key, this.title, this.day}) : super(key: key);
@@ -13,15 +16,16 @@ class EventList extends StatefulWidget {
 }
 
 class _EventListState extends State<EventList> {
-  List<Event> _events = [];
   int eventNum = 0;
   int _lastInsertedId = 0;
   EventModel _model = new EventModel();
-
+  final _notifications = new EventNotifications();
+  Day eventsDay;
+  
   void initState() {
-    if (widget.day.events != null){
-    _events = widget.day.events;
-    eventNum = _events.length;
+    eventsDay = widget.day;
+    if (eventsDay.events != null){
+    eventNum = eventsDay.events.length;
     }
     super.initState();
   }
@@ -29,12 +33,14 @@ class _EventListState extends State<EventList> {
   //temporary UI
   @override
   Widget build(BuildContext context) {
-
+    _notifications.init();
+    tz.initializeTimeZones();
+    
     return Scaffold(
       appBar: AppBar(
         //add date to title
         title: Text("Schedule"),
-        leading: BackButton(onPressed: () => Navigator.pop(context, _events),)  //return with current events
+        leading: BackButton(onPressed: () => Navigator.pop(context, eventsDay.events),)  //return with current events
         ),
       body: Align(
         alignment: Alignment.topLeft,
@@ -43,12 +49,12 @@ class _EventListState extends State<EventList> {
           padding: const EdgeInsets.all(5),
           itemCount: eventNum,
           itemBuilder: (BuildContext context, int index) {
-            //Event
+          //Event
             //temporary widget, change to custom later w/time displayed + event selection
             return Container (
                   child: ListTile(
-                  title: Text(_events[index].name + " " + _events[index].location),
-                  subtitle: Text(_events[index].startTime.toString() + " to " + (_events[index].endTime.toString())),
+                  title: Text(eventsDay.events[index].name + " " +eventsDay.events[index].location),
+                  subtitle: Text(eventsDay.events[index].startTime.format(context) + " to " + eventsDay.events[index].endTime.format(context)),
                   )
             );
           },
@@ -58,7 +64,7 @@ class _EventListState extends State<EventList> {
     //Add Event Button
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _addEvent(widget.day);
+          _addEvent();
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.blue,
@@ -66,22 +72,34 @@ class _EventListState extends State<EventList> {
     );
   }
 
-  Future<void> _addEvent(Day d) async {
+  Future<void> _addEvent() async {
     //navigate to add event page
     var e = await Navigator.push(context,
       MaterialPageRoute(builder: (context) {
-        return AddEvent();
+        return AddEvent(day: eventsDay);
       }));
     if (e != null){
       //if user enters event
       Event newEvent = e;
-      newEvent.dayId = d.id;
+      newEvent.dayId = eventsDay.id;
       //insert new event into database
       _lastInsertedId = await _model.insertEvent(newEvent);
+      //create notification for event
+      _addEventNotification(e, eventsDay.date);
       setState(() {
-        _events.add(newEvent);
-        eventNum = _events.length;
+        eventsDay.events.add(newEvent); //add event to list
+        eventsDay.orderEvents(); //resort order of list
+        eventNum = eventsDay.events.length;
       });
     }
   }
+
+  Future<void> _addEventNotification(Event e, DateTime date) async {
+     tz.setLocalLocation(tz.getLocation('America/Detroit')); //hardcode local location until geocoding implemented
+    //default notfication sent for 30 minutes before event
+    var when = tz.TZDateTime(tz.local, date.year, date.month, date.day, e.startTime.hour, e.startTime.minute - 30);
+    await _notifications.sendNotificationLater(e.name, e.description, when, null);
+  }
+
 }
+

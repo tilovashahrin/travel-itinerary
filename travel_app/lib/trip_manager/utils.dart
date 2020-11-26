@@ -1,4 +1,4 @@
-//utils.dart taken from csci4100 take-home midterm github
+//utils.dart taken from csci4100 take-home midterm github repo
 
 String toOrdinal(number) {
   if ((number >= 10) && (number <= 19)) {

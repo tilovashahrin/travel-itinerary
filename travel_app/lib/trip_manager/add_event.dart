@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:time_range_picker/time_range_picker.dart';
 import 'trip.dart';
 
 class AddEvent extends StatefulWidget {
-  AddEvent({Key key, this.title}) : super(key: key);
-
+  AddEvent({Key key, this.title, this.day}) : super(key: key);
+  final Day day;
   final String title;
 
   @override
@@ -90,28 +91,15 @@ class _AddEventState extends State<AddEvent> {
                   RaisedButton(
                       child: Text('Select'),
                       onPressed: () {
-                        _getStartTime();
+                        _getTimes();
                       })
                 ],
               ),
-            //End Date
+            //End Time
             Container(
-                  child: Text("End Time: ",
+                  child: Text("End Time: " + endTimeString,
                     textScaleFactor: 1, textAlign: TextAlign.left),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  //display current selected time
-                  Text(endTimeString, textScaleFactor: 1, textAlign: TextAlign.left),
-                  RaisedButton(
-                      child: Text('Select'),
-                      onPressed: () {
-                        _getEndTime();
-                      })
-                ],
-              ),
-
             ]),
       ),
         ),
@@ -119,10 +107,10 @@ class _AddEventState extends State<AddEvent> {
         floatingActionButton:Builder(
         builder: (context) =>  FloatingActionButton(
           onPressed: () {
-            //if all fields have been changed and times have been selected
+          //if all fields have been changed and times have been selected
             if (name != null && location != null &&  description!= null
               && startTime != null && endTime != null) {
-              //create Event instance
+            //create Event instance
               Event entry = Event(
                   name: name,
                   location: location,
@@ -130,11 +118,39 @@ class _AddEventState extends State<AddEvent> {
                   startTime: startTime,
                   endTime: endTime
               );
-              Navigator.of(context).pop(entry); //return new event
+            //check if time conflicts with pre-existing events
+              if (widget.day.timeSlotAvailable(entry)) {
+                //no conflict, return event to event list
+                Navigator.of(context).pop(entry);
+              }
+              else {
+            //conflict, show dialog telling user to pick a new time
+                 showDialog<void>(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Time Conflict'),
+                      content: Text(
+                          'The timing of this event conflicts with another event this day.'),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text('Change Time'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              }
             }
-            //show snackbar if some fields incomplete
+            else {
+          //show snackbar if some fields incomplete
             var snackbar = SnackBar(content: Text('Fill out all fields.'));
-            Scaffold.of(context).showSnackBar(snackbar);           
+            Scaffold.of(context).showSnackBar(snackbar);
+            }         
           },
           child: Icon(Icons.save),
           backgroundColor: Colors.blue,
@@ -143,39 +159,22 @@ class _AddEventState extends State<AddEvent> {
     );
   }
 
-  //functions to call time picker and get times from user
-  //add verification that endTime isn't before startTime
-  Future<void> _getStartTime() async {
-    await showTimePicker(
+  //function to call time range picker and get times from user
+  Future<void> _getTimes() async {
+    TimeRange range = await showTimeRangePicker(
       context: context,
-      initialTime: TimeOfDay(hour: 0, minute: 0)
-    ).then((value) {
-      if (value != null) {
-        startTime = value;
-        setState(() {
-          //change string formatting
-          startTimeString= startTime.toString();
-        });
-      }
+      use24HourFormat: false,
+      interval: Duration(minutes: 1),
+      start: TimeOfDay(hour: 0, minute: 0),
+      //labels:
+    );
+    startTime = range.startTime;
+    endTime = range.endTime;
+    setState(() {
+      startTimeString= startTime.format(context);
+      endTimeString= endTime.format(context);
     });
+
   }
-
-  Future<void> _getEndTime() async {
-    await showTimePicker(
-      context: context,
-      initialTime: startTime
-    ).then((value) {
-      if (value != null) {
-        endTime = value;
-        setState(() {
-          //change string formatting
-          endTimeString= endTime.toString();
-        });
-      }
-    });
-  }
-
-
-
 
 }
