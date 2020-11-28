@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'timeline.dart';
 import 'like_screen.dart';
-import 'trip_manager/list_trips.dart';
+import 'trip_manager/view_trip_list.dart';
 
 class MainScreen extends StatefulWidget {
   MainScreen({Key key, this.title}) : super(key: key);
@@ -75,7 +75,7 @@ class _MainScreenState extends State<MainScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => TripList(),
+                    builder: (context) => ViewTripList(),
                   ),
                 );
               },

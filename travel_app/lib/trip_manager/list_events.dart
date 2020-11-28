@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'add_event.dart';
-import 'trip.dart';
+import 'trip_components/day.dart';
+import 'trip_components/event.dart';
 import 'local_storage/event_model/event_model.dart';
 import 'event_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;

@@ -1,6 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 import 'event_db_utils.dart';
-import 'package:travel_app/trip_manager/trip.dart';
+import 'package:travel_app/trip_manager/trip_components/event.dart';
 
 class EventModel{
   //get all Events

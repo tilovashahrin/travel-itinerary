@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'list_events.dart';
-import 'trip.dart';
-import 'utils.dart';
+import 'trip_components/trip.dart';
+import 'trip_components/day.dart';
 import 'local_storage/day_model/day_model.dart';
 
 //Page to list each day of a trip. When a day is tapped the user will be shown a list of the day's event.

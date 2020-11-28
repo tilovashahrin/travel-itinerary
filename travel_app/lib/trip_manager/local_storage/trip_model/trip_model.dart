@@ -1,6 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 import 'trip_db_utils.dart';
-import 'package:travel_app/trip_manager/trip.dart';
+import 'package:travel_app/trip_manager/trip_components/trip.dart';
 
 class TripModel{
   //get all Trips

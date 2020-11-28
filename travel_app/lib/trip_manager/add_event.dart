@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:time_range_picker/time_range_picker.dart';
-import 'trip.dart';
+import 'trip_components/day.dart';
+import 'trip_components/event.dart';
 
 class AddEvent extends StatefulWidget {
   AddEvent({Key key, this.title, this.day}) : super(key: key);

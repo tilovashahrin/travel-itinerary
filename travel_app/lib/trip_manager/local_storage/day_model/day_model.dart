@@ -1,6 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 import 'day_db_utils.dart';
-import 'package:travel_app/trip_manager/trip.dart';
+import 'package:travel_app/trip_manager/trip_components/day.dart';
 
 class DayModel{
   //get all Day
