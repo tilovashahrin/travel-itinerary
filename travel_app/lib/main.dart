@@ -3,7 +3,7 @@ import 'home.page.dart';
 import 'loginPage.dart';
 import 'auth.service.dart';
 import 'package:flutter/material.dart';
-import 'main_screen.dart';
+import 'home_screen/main_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 AuthService appAuth = new AuthService();
 
