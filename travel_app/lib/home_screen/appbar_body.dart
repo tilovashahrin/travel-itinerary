@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'searchBar.dart';
+import 'popularPlaces.dart';
 
 class App_Body extends StatelessWidget{
   @override
@@ -7,6 +9,7 @@ class App_Body extends StatelessWidget{
     return Column(
       children: [
         Stack(
+          overflow: Overflow.visible,
           alignment: Alignment.topCenter,
           children: [
             Image.asset(
@@ -17,6 +20,7 @@ class App_Body extends StatelessWidget{
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                //SizedBox(height: 80),
                 Text(
                   "Travel Log",
                   style: TextStyle(
@@ -29,9 +33,16 @@ class App_Body extends StatelessWidget{
                 ),
               ],
             ),
+            Positioned(
+              bottom: 25,
+              child:
+              SearchBar(),
+            ),
+            PopularPlaces(),
           ],
         ),
       ],
     );
   }
 }
+

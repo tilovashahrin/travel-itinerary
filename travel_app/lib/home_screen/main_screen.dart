@@ -34,7 +34,7 @@ class _MainScreenState extends State<MainScreen> {
             ClipOval(
               child: Image.asset("images/profile.png"),
             ),
-            onPressed: null,
+            onPressed: () {},
           ),
         ],
       ),
