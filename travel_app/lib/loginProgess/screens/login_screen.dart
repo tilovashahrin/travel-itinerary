@@ -1,42 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:travel_app/loginProgess/authentication.dart';
-import 'dart:io';
+import 'package:flutter/animation.dart';
+import 'package:flutter/cupertino.dart';
+import 'signup_screen.dart';
 import 'home_screen.dart';
-import 'login_screen.dart';
+import 'package:travel_app/loginProgess/authentication.dart';
 
-class SignupScreen extends StatefulWidget {
-  static const routeName = '/signup';
+class LoginScreen extends StatefulWidget {
+  static const routeName = '/login';
   @override
-  _SignupScreenState createState() => _SignupScreenState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
+class _LoginScreenState extends State<LoginScreen> {
 
   final GlobalKey<FormState> _formKey = GlobalKey();
-  TextEditingController _passwordController = new TextEditingController();
 
   Map<String, String> _authData = {
     'email' : '',
-    'password' : ''
+    'password': ''
   };
 
   void _showErrorDialog(String msg)
   {
     showDialog(
         context: context,
-        builder: (ctx) => AlertDialog(
-          title: Text('An Error Occured'),
-          content: Text(msg),
-          actions: <Widget>[
-            FlatButton(
-              child: Text('Okay'),
-              onPressed: (){
-                Navigator.of(ctx).pop();
-              },
-            )
-          ],
-        )
+      builder: (ctx) => AlertDialog(
+        title: Text('An Error Occured'),
+        content: Text(msg),
+        actions: <Widget>[
+          FlatButton(
+            child: Text('Okay'),
+            onPressed: (){
+              Navigator.of(ctx).pop();
+            },
+          )
+        ],
+      )
     );
   }
 
@@ -49,13 +49,13 @@ class _SignupScreenState extends State<SignupScreen> {
     _formKey.currentState.save();
 
     try{
-      await Provider.of<Authentication>(context, listen: false).signUp(
+      await Provider.of<Authentication>(context, listen: false).logIn(
           _authData['email'],
           _authData['password']
       );
       Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
 
-    } catch(error)
+    } catch (error)
     {
       var errorMessage = 'Authentication Failed. Please try again later.';
       _showErrorDialog(errorMessage);
@@ -65,20 +65,25 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Signup'),
+      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomPadding: false,
+      extendBodyBehindAppBar: true,
+     appBar: AppBar(
+       backgroundColor: Color(0x44000000),
+       elevation: 0,
+        //title: Text('Login'),
+       actions: <Widget>[
+         FlatButton(
+           child: Row(
+             children: <Widget>[
+              Text('Signup'),
+               Icon(Icons.person_add)
+             ],
+           ),
+           textColor: Colors.white,
 
-        actions: <Widget>[
-          FlatButton(
-            child: Row(
-              children: <Widget>[
-                Text('Login'),
-                Icon(Icons.person)
-              ],
-            ),
-            textColor: Colors.white,
-            onPressed: (){
-              Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
+           onPressed: (){
+             Navigator.of(context).pushReplacementNamed(SignupScreen.routeName);
             },
           )
         ],
@@ -87,21 +92,33 @@ class _SignupScreenState extends State<SignupScreen> {
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    colors: [
-                      Colors.limeAccent,
-                      Colors.redAccent,
-                    ]
-                )
+              image: DecorationImage(
+                image: AssetImage('images/loginbg.jpg'),
+                fit: BoxFit.cover,
+              ),
+
             ),
+
+          ),
+
+          Text(
+
+            '\n\n        Welcome to Your \n               Journey',
+            style: TextStyle(
+                fontSize: 35,
+                color: Colors.white,
+                fontStyle:FontStyle.italic),
           ),
           Center(
+
             child: Card(
+              elevation: 0,
+              color: Colors.transparent,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Container(
-                height: 300,
+                height: 260,
                 width: 300,
                 padding: EdgeInsets.all(16),
                 child: Form(
@@ -111,33 +128,47 @@ class _SignupScreenState extends State<SignupScreen> {
                       children: <Widget>[
                         //email
                         TextFormField(
-                          decoration: InputDecoration(labelText: 'Email'),
+                          decoration: InputDecoration(labelText: 'Email',prefixIcon: Icon(
+                            Icons.person,
+                            color: Colors.white,
+                            size: 40),labelStyle:
+    new TextStyle(color: Colors.white, fontSize: 20.0)),
+
                           keyboardType: TextInputType.emailAddress,
+                          style: TextStyle(color: Colors.white),
                           validator: (value)
                           {
                             if(value.isEmpty || !value.contains('@'))
-                            {
-                              return 'invalid email';
-                            }
+                              {
+                                return 'invalid email';
+                              }
                             return null;
                           },
                           onSaved: (value)
                           {
                             _authData['email'] = value;
                           },
+
+
                         ),
 
                         //password
                         TextFormField(
-                          decoration: InputDecoration(labelText: 'Password'),
+                              decoration: InputDecoration(labelText: 'Password',prefixIcon: Icon(
+        Icons.person,
+        color: Colors.white,
+        size: 40),labelStyle:
+        new TextStyle(color: Colors.white, fontSize: 20.0)),
+
+        keyboardType: TextInputType.emailAddress,
+        style: TextStyle(color: Colors.white),
                           obscureText: true,
-                          controller: _passwordController,
                           validator: (value)
                           {
                             if(value.isEmpty || value.length<=5)
-                            {
-                              return 'invalid password';
-                            }
+                              {
+                                return 'invalid password';
+                              }
                             return null;
                           },
                           onSaved: (value)
@@ -145,30 +176,12 @@ class _SignupScreenState extends State<SignupScreen> {
                             _authData['password'] = value;
                           },
                         ),
-
-                        //Confirm Password
-                        TextFormField(
-                          decoration: InputDecoration(labelText: 'Confirm Password'),
-                          obscureText: true,
-                          validator: (value)
-                          {
-                            if(value.isEmpty || value != _passwordController.text)
-                            {
-                              return 'invalid password';
-                            }
-                            return null;
-                          },
-                          onSaved: (value)
-                          {
-
-                          },
-                        ),
                         SizedBox(
                           height: 30,
                         ),
                         RaisedButton(
                           child: Text(
-                              'Submit'
+                            'Submit'
                           ),
                           onPressed: ()
                           {
@@ -179,11 +192,15 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                           color: Colors.blue,
                           textColor: Colors.white,
-                        )
+                        ),
                       ],
+
                     ),
+
                   ),
+
                 ),
+
               ),
             ),
           )
