@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'timeline.dart';
 import '../like_screen.dart';
 import '../trip_manager/view_trip_list.dart';
@@ -19,7 +20,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: new AppBar(
-        backgroundColor: Color(0x44000000),
+        backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
           icon: Icon(
