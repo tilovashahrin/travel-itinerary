@@ -34,6 +34,8 @@ dependencies:
   timezone:
   time_range_picker: ^1.1.0
   date_range_picker: ^1.0.5
+  http: ^0.12.2
+  provider:
 
 dev_dependencies:
   flutter_test:

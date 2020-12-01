@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'screens/home_screen.dart';
-import 'screens/login_screen.dart';
-import 'screens/signup_screen.dart';
-import 'models/authentication.dart';
+import 'home_screen.dart';
+import 'login_screen.dart';
+import 'signup_screen.dart';
+import 'authentication.dart';
 
 void main() => runApp(MyApp());
 

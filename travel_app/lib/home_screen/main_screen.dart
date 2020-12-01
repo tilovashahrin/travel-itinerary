@@ -19,7 +19,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: new AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Color(0x44000000),
         elevation: 0,
         leading: IconButton(
           icon: Icon(

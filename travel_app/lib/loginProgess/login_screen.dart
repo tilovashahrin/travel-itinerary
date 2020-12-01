@@ -4,7 +4,7 @@ import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'signup_screen.dart';
 import 'home_screen.dart';
-import '../models/authentication.dart';
+import 'package:travel_app/loginProgess/authentication.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = '/login';

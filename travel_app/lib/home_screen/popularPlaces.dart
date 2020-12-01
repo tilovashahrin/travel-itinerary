@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'appbar_body.dart';
 
 class PopularPlaces extends StatelessWidget{
@@ -8,4 +8,4 @@ class PopularPlaces extends StatelessWidget{
   Widget build(BuildContext context) {
 
   }
-}
+}*/

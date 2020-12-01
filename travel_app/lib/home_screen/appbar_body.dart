@@ -38,7 +38,7 @@ class App_Body extends StatelessWidget{
               child:
               SearchBar(),
             ),
-            PopularPlaces(),
+            //PopularPlaces(),
           ],
         ),
       ],
