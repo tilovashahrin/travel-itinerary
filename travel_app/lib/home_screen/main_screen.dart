@@ -3,9 +3,10 @@ import 'package:flutter/rendering.dart';
 import 'timeline.dart';
 import '../like_screen.dart';
 import '../trip_manager/view_trip_list.dart';
-import 'package:travel_app/home_screen/appbar_body.dart';
+import 'appbar_body.dart'; //had to change this to run -riya
 
 class MainScreen extends StatefulWidget {
+  static const routeName = '/home'; //need for routing -riya
   MainScreen({Key key, this.title}) : super(key: key);
   final String title;
   @override

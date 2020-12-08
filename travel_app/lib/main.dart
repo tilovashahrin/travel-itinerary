@@ -1,37 +1,39 @@
-import 'home.page.dart';
 //import 'package:flutt/home.page.dart';
-import 'loginPage.dart';
-import 'auth.service.dart';
+import 'loginProgess/screens/login_screen.dart';
+import 'loginProgess/screens/signup_screen.dart';
+import 'loginProgess/screens/authentication.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'home_screen/main_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
-AuthService appAuth = new AuthService();
+//AuthService appAuth = new AuthService();
+void main() => runApp(MyApp());
 
-void main() async {
-/* Section commented because of error with routes, temporailry changed home to mainScreen
-
-// Set default home.
- LoginPage();
- Widget _defaultHome = new LoginPage();
-
- // Get result of the login function.
- bool _result = await appAuth.login();
- if (_result) {
-   Widget _defaultHome = new MainScreen();
-  } 
- */
-  // Run app!
-  runApp(new MaterialApp(
-    title: 'App',
-    home:  new MainScreen(),//_defaultHome, //commented out for same reasons as above
-    routes: <String, WidgetBuilder>{
-      // Set routes for using the Navigator.
-      '/home': (BuildContext context) =>  new MainScreen(),
-      '/login': (BuildContext context) => new LoginPage()
-    },
-  ));
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(
+          value: Authentication(),
+        )
+      ],
+      child: MaterialApp(
+        title: 'Login App',
+        theme: ThemeData(
+          primaryColor: Colors.blue,
+        ),
+        home: LoginScreen(),
+        routes: {
+          SignupScreen.routeName: (ctx)=> SignupScreen(),
+          LoginScreen.routeName: (ctx)=> LoginScreen(),
+          MainScreen.routeName: (ctx)=> MainScreen(),
+        },
+      ),
+    );
+  }
 }
-
+/*
 class LoginPage extends StatelessWidget{
   @override
   Widget build(BuildContext context){
@@ -57,4 +59,4 @@ class LoginPage extends StatelessWidget{
       },
     );
   }
-}
+}*/

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="215648f2-ab55-4d1a-af5f-427ed813a300" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1lMP918KHWWLrXthztIEgv1pZUn" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="dart.analysis.tool.window.force.activate" value="false" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\riya9\AndroidStudioProjects\major-group-project-heather-tilova-riya\travel_app\lib\loginProgess\screens" />
+      <recent name="C:\Users\riya9\AndroidStudioProjects\major-group-project-heather-tilova-riya\travel_app\images" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="FlutterRunConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="FlutterRunConfigurationType" factoryName="Flutter" editBeforeRun="true">
+      <option name="filePath" value="$PROJECT_DIR$/travel_app/lib/main.dart" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter" editBeforeRun="true" nameIsGenerated="true">
+      <option name="filePath" value="$PROJECT_DIR$/travel_app/lib/main.dart" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <option name="contentProportion" value="0.13173157" />
+          <treeState>
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Flutter" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Flutter" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+            </expand>
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="215648f2-ab55-4d1a-af5f-427ed813a300" name="Default Changelist" comment="" />
+      <created>1607403831300</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1607403831300</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607404432323">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1607404432323" />
+    <state x="370" y="129" key="#com.intellij.ide.util.TreeFileChooserDialog" timestamp="1607443178647">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="370" y="129" key="#com.intellij.ide.util.TreeFileChooserDialog/0.0.1280.680@0.0.1280.680" timestamp="1607443178647" />
+    <state x="371" y="88" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1607444447838">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="371" y="88" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1607444447838" />
+    <state x="331" y="74" key="#main.dart" timestamp="1607444563316">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="331" y="74" key="#main.dart/0.0.1280.680@0.0.1280.680" timestamp="1607444563316" />
+    <state width="1047" height="163" key="GridCell.Tab.0.bottom" timestamp="1607444432054">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1047" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1607444432054" />
+    <state width="1047" height="163" key="GridCell.Tab.0.center" timestamp="1607444432053">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1047" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1607444432053" />
+    <state width="1047" height="163" key="GridCell.Tab.0.left" timestamp="1607444432053">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1047" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1607444432053" />
+    <state width="1047" height="163" key="GridCell.Tab.0.right" timestamp="1607444432054">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1047" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1607444432054" />
+    <state x="142" y="0" key="SettingsEditor" timestamp="1607403922659">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1607403922659" />
+    <state x="94" y="94" width="1093" height="493" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1607443158390">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="94" y="94" width="1093" height="493" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1280.680@0.0.1280.680" timestamp="1607443158390" />
+  </component>
+</project>

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:travel_app/loginProgess/models/authentication.dart';
+import 'authentication.dart';
 import 'dart:io';
 import 'home_screen.dart';
 import 'login_screen.dart';
