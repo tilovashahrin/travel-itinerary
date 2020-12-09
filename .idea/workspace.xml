@@ -7,6 +7,14 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DartProblemsView" auto-scroll-to-source="true" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -21,12 +29,14 @@
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/OneDrive/Desktop/major-group-project-heather-tilova-riya" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\riya9\AndroidStudioProjects\major-group-project-heather-tilova-riya\travel_app\lib" />
+      <recent name="C:\Users\riya9\AndroidStudioProjects\major-group-project-heather-tilova-riya\travel_app\lib\loginProgess" />
       <recent name="C:\Users\riya9\AndroidStudioProjects\major-group-project-heather-tilova-riya\travel_app\lib\loginProgess\screens" />
       <recent name="C:\Users\riya9\AndroidStudioProjects\major-group-project-heather-tilova-riya\travel_app\images" />
     </key>
@@ -84,11 +94,26 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607404432323">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1607404432323" />
+    <state x="404" y="144" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607453494676">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="404" y="144" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1607453494676" />
     <state x="370" y="129" key="#com.intellij.ide.util.TreeFileChooserDialog" timestamp="1607443178647">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -97,33 +122,41 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="88" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1607444447838" />
-    <state x="331" y="74" key="#main.dart" timestamp="1607444563316">
+    <state x="331" y="74" key="#main.dart" timestamp="1607485118775">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="331" y="74" key="#main.dart/0.0.1280.680@0.0.1280.680" timestamp="1607444563316" />
-    <state width="1047" height="163" key="GridCell.Tab.0.bottom" timestamp="1607444432054">
+    <state x="331" y="74" key="#main.dart/0.0.1280.680@0.0.1280.680" timestamp="1607485118775" />
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1607485546392">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1047" height="163" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1607444432054" />
-    <state width="1047" height="163" key="GridCell.Tab.0.center" timestamp="1607444432053">
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1607485546392" />
+    <state width="1047" height="239" key="GridCell.Tab.0.bottom" timestamp="1607482086617">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1047" height="163" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1607444432053" />
-    <state width="1047" height="163" key="GridCell.Tab.0.left" timestamp="1607444432053">
+    <state width="1047" height="239" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1607482086617" />
+    <state width="1047" height="239" key="GridCell.Tab.0.center" timestamp="1607482086617">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1047" height="163" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1607444432053" />
-    <state width="1047" height="163" key="GridCell.Tab.0.right" timestamp="1607444432054">
+    <state width="1047" height="239" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1607482086617" />
+    <state width="1047" height="239" key="GridCell.Tab.0.left" timestamp="1607482086616">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1047" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1607444432054" />
-    <state x="142" y="0" key="SettingsEditor" timestamp="1607403922659">
+    <state width="1047" height="239" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1607482086616" />
+    <state width="1047" height="239" key="GridCell.Tab.0.right" timestamp="1607482086617">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1607403922659" />
+    <state width="1047" height="239" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1607482086617" />
+    <state x="142" y="0" key="SettingsEditor" timestamp="1607449027992">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1607449027992" />
     <state x="94" y="94" width="1093" height="493" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1607443158390">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="94" y="94" width="1093" height="493" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1280.680@0.0.1280.680" timestamp="1607443158390" />
+    <state x="297" y="150" key="run.anything.popup" timestamp="1607456841874">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="297" y="150" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1607456841874" />
   </component>
 </project>
