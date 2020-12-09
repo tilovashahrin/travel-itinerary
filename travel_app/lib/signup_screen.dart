@@ -65,6 +65,8 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomPadding: false,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         //title: Text('Signup'),
@@ -105,7 +107,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Container(
-                height: 300,
+                height: 500,
                 width: 300,
                 padding: EdgeInsets.all(16),
                 child: Form(

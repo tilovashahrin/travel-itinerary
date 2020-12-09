@@ -19,9 +19,24 @@ class PopularPlaces extends StatelessWidget{
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            JapanPreview(press: (){}),
-            LondonPreview(press: (){}),
-            BrazilPreview(press: (){}),
+            Padding(
+              padding: EdgeInsets.only(left: 20.0),
+              child: JapanPreview(
+                press: (){},
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 20.0),
+              child: LondonPreview(
+                press: (){},
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 20.0),
+              child: BrazilPreview(
+                press: (){},
+              ),
+            ),
           ],
         ),
       ],
