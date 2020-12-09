@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'searchBar.dart';
-import 'popularPlaces.dart';
+
 
 class App_Body extends StatelessWidget{
   @override
@@ -14,7 +14,7 @@ class App_Body extends StatelessWidget{
           children: [
             Image.asset(
               "images/background.png",
-              height: 315,
+              height: 325,
               fit: BoxFit.cover,
             ),
             Column(
@@ -38,7 +38,6 @@ class App_Body extends StatelessWidget{
               child:
               SearchBar(),
             ),
-            //PopularPlaces(),
           ],
         ),
       ],
