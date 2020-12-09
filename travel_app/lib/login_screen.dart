@@ -56,8 +56,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
     try{
       await Provider.of<Authentication>(context, listen: false).logIn(
-          _authData['email'],
-          _authData['password']
+          _authData[DemoLocalization.of(context).getTranslatedValue('_Email')],
+          _authData[DemoLocalization.of(context).getTranslatedValue('_Password')]
       );
       Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
 
