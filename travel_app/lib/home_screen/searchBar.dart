@@ -24,10 +24,13 @@ class SearchBar extends StatelessWidget{
         onChanged: (value) {},
         decoration:
         InputDecoration(
-          hintText:"Where to?",
+          hintText:"Eg.: Toronto, Canada",
           hintStyle: TextStyle(
             fontSize: 16,
             color: Colors.black38,
+          ),
+          prefixIcon: Icon(
+            Icons.location_on,
           ),
           suffixIcon: Icon(
             Icons.search,

@@ -3,6 +3,7 @@ import '../like_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+
 //tilova
 class timeline_dataSource{
   static List<User> generateUsers(){
@@ -91,7 +92,7 @@ class _TweetWidgetState extends State<TweetWidget>{
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 5.0),
+            padding: EdgeInsets.symmetric(horizontal: 6.0),
             child: tweet.author.avatar,
           ),
           Column(

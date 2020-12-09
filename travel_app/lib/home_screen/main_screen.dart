@@ -4,6 +4,7 @@ import 'timeline.dart';
 import '../like_screen.dart';
 import '../trip_manager/view_trip_list.dart';
 import 'appbar_body.dart'; //had to change this to run -riya
+import 'popularPlaces.dart';
 
 class MainScreen extends StatefulWidget {
   static const routeName = '/home'; //need for routing -riya
@@ -44,6 +45,7 @@ class _MainScreenState extends State<MainScreen> {
       ListView(
         children: <Widget>[
           App_Body(),
+          PopularPlaces(),
           TweetWidget(
             tweet: _tweets[0],
           ),
