@@ -24,4 +24,25 @@ class TripModel{
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
   }
+
+    //Update Event
+  Future<void> updateTrip(Trip trip) async {
+    final db = await DBUtils().init();
+    await db.update(
+      'trip_items', 
+      trip.toMap(),
+      where: 'id = ?',
+      whereArgs: [trip.id],
+    );
+  }
+
+  //Delete Event
+  Future<void> deleteTrip(int id) async {
+    final db = await DBUtils().init();
+    await db.delete(
+      'trip_items', 
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
 }

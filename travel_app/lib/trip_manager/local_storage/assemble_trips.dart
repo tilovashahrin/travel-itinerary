@@ -44,8 +44,9 @@ Future<TripList> assembleTrips() async {
                 events.add(e[k]);
               }
             }
-          //set day's events
+          //set day's events and order them
           d[j].events = events;
+          d[j].orderEvents();
           //add day to list
           days.add(d[j]);
           }

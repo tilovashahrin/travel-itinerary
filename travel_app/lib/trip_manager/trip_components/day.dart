@@ -27,7 +27,7 @@ class Day {
     });
   }
 
-  //check if a new event overlaps with any pre-existing events
+  //check if a new/edited event overlaps with any pre-existing events
   bool timeSlotAvailable(Event newEvent){
 
     //if there are no other events added yet, return true
@@ -41,6 +41,12 @@ class Day {
 
     //iterate through day's current events to find conflicts
     for (int i = 0; i < events.length; i++){
+      
+      if (newEvent.id == events[i].id){
+        //if current event is the same event being checked, skip iteration
+        continue;
+      }
+
       //convert new event's times to DateTime instances
       DateTime eventStart = DateTime.now().add( Duration(hours: events[i].startTime.hour, minutes: events[i].startTime.minute));
       DateTime eventEnd = DateTime.now().add( Duration(hours: events[i].endTime.hour, minutes: events[i].endTime.minute));

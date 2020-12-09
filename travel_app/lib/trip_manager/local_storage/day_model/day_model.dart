@@ -35,4 +35,14 @@ class DayModel{
       whereArgs: [day.id],
     );
   }
+
+  //Delete Day
+  Future<void> deleteDay(int id) async {
+    final db = await DBUtils().init();
+    await db.delete(
+      'day_items', 
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
 }

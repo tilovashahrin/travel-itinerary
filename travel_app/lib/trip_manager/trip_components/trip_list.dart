@@ -24,8 +24,14 @@ class TripList{
     DateTime newStart = newTrip.startDate;
     DateTime newEnd = newTrip.endDate;   
 
-    //iterate through trips to find conflicts
+    //iterate through list of trips
     for (int i = 0; i < trips.length; i++){
+
+      if (newTrip.id == trips[i].id){
+        //if current trip is the same trip being checked, skip iteration (only applies when a trip is being edited)
+        continue;
+      } 
+
       //convert new event's times to DateTime instances
       DateTime tripStart = trips[i].startDate;
       DateTime tripEnd = trips[i].endDate;
@@ -51,4 +57,13 @@ class TripList{
     //none of the conflict cases apply, trip can be added
     return true;
   }
+
+  void shortenTrip(Trip trip, DateTime newStart, DateTime newEnd){
+
+  }
+
+  void lengthenTrip(Trip trip, DateTime newStart, DateTime newEnd){
+    
+  }
+
 }

@@ -1,4 +1,4 @@
-//code taken from 06a_Snackbars_and_Notifications Lecture Example and modified for this app
+//code taken from 06a_Snackbars_and_Notifications Lecture Example. modified for this app and added deleteNotification function
 
 import 'dart:io' show Platform;
 
@@ -89,6 +89,7 @@ class EventNotifications {
   }
 
   sendNotificationLater(String title, String body, tz.TZDateTime when, String payload) {
+    int id = _notificationId;
     _flutterLocalNotificationsPlugin.zonedSchedule(
       _notificationId++,
       title,
@@ -99,10 +100,17 @@ class EventNotifications {
       uiLocalNotificationDateInterpretation: null,
       androidAllowWhileIdle: true,
     );
+
+    return id;
   }
 
   Future<List<PendingNotificationRequest>>
       getPendingNotificationRequests() async {
     return _flutterLocalNotificationsPlugin.pendingNotificationRequests();
   }
+
+  deleteNotification(int id) async {
+    await _flutterLocalNotificationsPlugin.cancel(id);
+  }
+
 }

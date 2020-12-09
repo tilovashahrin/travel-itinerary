@@ -15,13 +15,34 @@ class EventModel{
     return event;
   }
 
-  //add Events
-  Future<int> insertEvent(Event trip) async {
+  //Add Events
+  Future<int> insertEvent(Event event) async {
     final db = await DBUtils().init();
     return db.insert(
       'event_items', 
-      trip.toMap(),
+      event.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+  //Update Event
+  Future<void> updateEvent(Event event) async {
+    final db = await DBUtils().init();
+    await db.update(
+      'event_items', 
+      event.toMap(),
+      where: 'id = ?',
+      whereArgs: [event.id],
+    );
+  }
+
+  //Delete Event
+  Future<void> deleteEvent(int id) async {
+    final db = await DBUtils().init();
+    await db.delete(
+      'event_items', 
+      where: 'id = ?',
+      whereArgs: [id],
     );
   }
 }
