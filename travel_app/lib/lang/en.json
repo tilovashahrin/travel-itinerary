@@ -3,5 +3,10 @@
   "_Password": "Password",
   "_Intro": " \n\n        Welcome to Your \n               Journey",
   "Sub": "Submit",
-  "_Sign": "Signup"
+  "_Sign": "Signup",
+  "InvM":"invalid password",
+  "InvE":"invalid email",
+ "Err ":"An Error Occured",
+  "K":"Okay",
+  "Auth":"Authentication Failed. Please try again later."
 }

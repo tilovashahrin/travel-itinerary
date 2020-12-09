@@ -23,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
 
   Map<String, String> _authData = {
-   '_Email' : '',
+   'Email' : '',
     'password': ''
   };
 
@@ -32,11 +32,11 @@ class _LoginScreenState extends State<LoginScreen> {
     showDialog(
         context: context,
       builder: (ctx) => AlertDialog(
-        title: Text('An Error Occured'),
+        title: Text(DemoLocalization.of(context).getTranslatedValue('Err')),
         content: Text(msg),
         actions: <Widget>[
           FlatButton(
-            child: Text('Okay'),
+            child: Text(DemoLocalization.of(context).getTranslatedValue('K')),
             onPressed: (){
               Navigator.of(ctx).pop();
             },
@@ -63,7 +63,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     } catch (error)
     {
-      var errorMessage = 'Authentication Failed. Please try again later.';
+      var errorMessage = DemoLocalization.of(context).getTranslatedValue('Auth');
       _showErrorDialog(errorMessage);
     }
 
@@ -174,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: Container(
-                height: 260,
+                height: 360,
                 width: 300,
                 padding: EdgeInsets.all(16),
                 child: Form(
@@ -196,13 +196,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           {
                             if(value.isEmpty || !value.contains('@'))
                               {
-                                return 'invalid email';
+                                return DemoLocalization.of(context).getTranslatedValue('InvE');
                               }
                             return null;
                           },
                           onSaved: (value)
                           {
-                            _authData['email'] = value;
+                            _authData[DemoLocalization.of(context).getTranslatedValue('_Email')] = value;
                           },
 
 
@@ -223,13 +223,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           {
                             if(value.isEmpty || value.length<=5)
                               {
-                                return 'invalid password';
+                                return DemoLocalization.of(context).getTranslatedValue('InvM');
                               }
                             return null;
                           },
                           onSaved: (value)
                           {
-                            _authData['password'] = value;
+                            _authData[DemoLocalization.of(context).getTranslatedValue('_Password')] = value;
                           },
                         ),
                         SizedBox(
