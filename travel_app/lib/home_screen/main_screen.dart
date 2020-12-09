@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import '../login_screen.dart';
 import 'timeline.dart';
 import '../like_screen.dart';
 import '../trip_manager/view_trip_list.dart';
@@ -39,8 +40,22 @@ class _MainScreenState extends State<MainScreen> {
             ),
             onPressed: () {},
           ),
+          FlatButton( //Riya added this log out button
+            child: Row(
+              children: <Widget>[
+                Text('Logout'),
+                Icon(Icons.person_add)
+              ],
+            ),
+            textColor: Colors.black,
+
+            onPressed: (){
+              Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
+            },
+          )
         ],
       ),
+
       body:
       ListView(
         children: <Widget>[
