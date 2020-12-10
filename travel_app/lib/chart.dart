@@ -7,66 +7,66 @@ import 'home_screen/main_screen.dart';
 
 class HomePage extends StatelessWidget {
   static const routeName = '/charts';
-  final List<DataConsumption> data = [
-    DataConsumption(
+  final List<Travel> data = [
+    Travel(
       month: 'JAN',
-      dataInGb: 540.45,
-      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+      dataInGb: 240.45,
+      barColor: charts.ColorUtil.fromDartColor(Colors.purpleAccent),
     ),
-    DataConsumption(
+    Travel(
       month: 'FEB',
-      dataInGb:188.31,
-      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+      dataInGb:288.31,
+      barColor: charts.ColorUtil.fromDartColor(Colors.indigoAccent),
     ),
-    DataConsumption(
+    Travel(
       month: 'MAR',
-      dataInGb: 159.39,
+      dataInGb: 459.39,
       barColor: charts.ColorUtil.fromDartColor(Colors.pink),
     ),
-    DataConsumption(
+    Travel(
       month: 'APR',
-      dataInGb: 163.82,
-      barColor: charts.ColorUtil.fromDartColor(Colors.deepPurple),
+      dataInGb: 563.82,
+      barColor: charts.ColorUtil.fromDartColor(Colors.lightGreenAccent),
     ),
-    DataConsumption(
+    Travel(
       month: 'MAY',
-      dataInGb: 209.26,
+      dataInGb: 609.26,
       barColor: charts.ColorUtil.fromDartColor(Colors.green),
     ),
-    DataConsumption(
+    Travel(
       month: 'JUN',
-      dataInGb: 170.26,
+      dataInGb: 770.26,
       barColor: charts.ColorUtil.fromDartColor(Colors.red),
     ),
-    DataConsumption(
+    Travel(
       month: 'JUL',
-      dataInGb: 130.45,
-      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+      dataInGb: 730.45,
+      barColor: charts.ColorUtil.fromDartColor(Colors.cyanAccent),
     ),
-    DataConsumption(
+    Travel(
       month: 'AUG',
-      dataInGb: 540.45,
-      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+      dataInGb: 700.45,
+      barColor: charts.ColorUtil.fromDartColor(Colors.yellow),
     ),
-    DataConsumption(
+    Travel(
       month: 'SEP',
       dataInGb: 540.45,
-      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+      barColor: charts.ColorUtil.fromDartColor(Colors.teal),
     ),
-    DataConsumption(
+    Travel(
       month: 'OCT',
-      dataInGb: 540.45,
-      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+      dataInGb: 500.45,
+      barColor: charts.ColorUtil.fromDartColor(Colors.amber),
     ),
-    DataConsumption(
+    Travel(
       month: 'NOV',
-      dataInGb: 540.45,
-      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+      dataInGb: 440.45,
+      barColor: charts.ColorUtil.fromDartColor(Colors.deepOrange),
     ),
-    DataConsumption(
+    Travel(
       month: 'DEC',
-      dataInGb: 540.45,
-      barColor: charts.ColorUtil.fromDartColor(Colors.blue),
+      dataInGb: 340.45,
+      barColor: charts.ColorUtil.fromDartColor(Colors.pinkAccent),
     ),
   ];
   @override
@@ -74,7 +74,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: Text('Data Consumption'),
+        title: Text('Travel Times'),
           actions: [
       FlatButton( //Riya added this log out button
       child: Row(
