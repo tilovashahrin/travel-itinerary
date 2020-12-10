@@ -7,10 +7,7 @@ import '../like_screen.dart';
 import '../trip_manager/view_trip_list.dart';
 import 'appbar_body.dart'; //had to change this to run -riya
 import 'popularPlaces.dart';
-<<<<<<< HEAD
-import 'package:travel_app/signup.dart';
-=======
->>>>>>> 1a2f284daeed3f192c4da7cb632ce9ea696bd2ff
+import 'package:travel_app/chart.dart';
 import 'package:travel_app/login_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -54,7 +51,6 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ),
         actions: [
-<<<<<<< HEAD
           FlatButton( //Riya added this log out button
             child: Row(
               children: <Widget>[
@@ -66,15 +62,7 @@ class _MainScreenState extends State<MainScreen> {
               Navigator.of(context).pushReplacementNamed(HomePage.routeName);
             },
           ),
-=======
-          // IconButton(
-          //   icon:
-          //   ClipOval(
-          //     child: Image.asset("images/profile.png"),
-          //   ),
-          //   onPressed: () {},
-          // ),
->>>>>>> 1a2f284daeed3f192c4da7cb632ce9ea696bd2ff
+
           FlatButton( //Riya added this log out button
             child: Row(
               children: <Widget>[

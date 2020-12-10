@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:travel_app/models/data_consumption.dart';
 import 'package:travel_app/models/graphTitle.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
-
+import 'main.dart';
 import 'home_screen/main_screen.dart';
 
 //inspiration on how to label from https://google.github.io/charts/flutter/example/behaviors/chart_title.html
 class HomePage extends StatelessWidget {
-  static const routeName = '/charts';
+  static const routeName = '/chart';
   final List<Travel> data = [
     Travel(
       month: 'JAN',

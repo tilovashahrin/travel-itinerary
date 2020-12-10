@@ -1,7 +1,7 @@
 //import 'package:flutt/home.page.dart';
 import 'package:travel_app/classes/demo_localization.dart';
-import 'file:///C:/Users/Tilova.LAPTOP-LB1DPCE0/Desktop/Fall%202020/Mobile%20Devices/major-group-project-heather-tilova-riya/travel_app/lib/DataTables/OsakaFlight.dart';
-
+//import 'package:travel_app/lib/DataTables/OsakaFlight.dart';
+import 'package:travel_app/chart.dart';
 import 'login_screen.dart';
 import 'signup.dart';
 import 'loginProgess/screens/authentication.dart';
@@ -70,11 +70,12 @@ class _MyAppState extends State<MyApp> {
           }
           return supportedLocales.first;
         },
-        home: MainScreen(),
+        home: LoginScreen(),
         routes: {
           SignupScreen.routeName: (ctx)=> SignupScreen(),
           LoginScreen.routeName: (ctx)=> LoginScreen(),
           MainScreen.routeName: (ctx)=> MainScreen(),
+          HomePage.routeName: (ctx)=> HomePage(),
         },
       ),
     );
