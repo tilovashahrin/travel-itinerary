@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'JapanPreview.dart';
 import 'LondonPreview.dart';
 import 'BrazilPreview.dart';
+import '../DataTables/OsakaFlight.dart';
 
 class PopularPlaces extends StatelessWidget{
   const PopularPlaces({Key key}) : super(key: key);
@@ -22,7 +23,7 @@ class PopularPlaces extends StatelessWidget{
             Padding(
               padding: EdgeInsets.only(left: 20.0),
               child: JapanPreview(
-                press: (){},
+                //press: (){},
               ),
             ),
             Padding(

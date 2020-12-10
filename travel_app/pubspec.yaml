@@ -34,12 +34,17 @@ dependencies:
   timezone:
   time_range_picker: ^1.1.0
   date_range_picker: ^1.0.5
-  provider: ^4.0.4
-  firebase_auth: ^0.18.4+1
   http: ^0.12.2
+  provider: ^4.0.4
   flutter_localizations: # Add this line
     sdk: flutter
-  charts_flutter: ^0.9.0
+  flutter_map:
+  latlong:
+  geolocator:
+  google_maps_flutter:
+  geocoder:
+  charts_flutter:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

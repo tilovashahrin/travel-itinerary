@@ -1,14 +1,16 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import '../chart.dart';
+import 'package:travel_app/trip_manager/add_trip.dart';
 import '../login_screen.dart';
 import 'timeline.dart';
 import '../like_screen.dart';
 import '../trip_manager/view_trip_list.dart';
 import 'appbar_body.dart'; //had to change this to run -riya
 import 'popularPlaces.dart';
+<<<<<<< HEAD
 import 'package:travel_app/signup.dart';
+=======
+>>>>>>> 1a2f284daeed3f192c4da7cb632ce9ea696bd2ff
 import 'package:travel_app/login_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -35,7 +37,6 @@ class _MainScreenState extends State<MainScreen> {
               currentAccountPicture: new CircleAvatar(
                 backgroundImage: AssetImage('images/profile.png'),
               ),
-
             ),
           ],
         ),
@@ -45,14 +46,15 @@ class _MainScreenState extends State<MainScreen> {
         elevation: 0,
         leading: Builder(
           builder: (context) => IconButton(
-            icon: new Icon(Icons.menu),
-            color: Colors.black,
+          icon: new Icon(Icons.menu),
+          color: Colors.black,
             onPressed: ()=> Scaffold.of(context).openDrawer(
 
             ),
           ),
         ),
         actions: [
+<<<<<<< HEAD
           FlatButton( //Riya added this log out button
             child: Row(
               children: <Widget>[
@@ -64,6 +66,15 @@ class _MainScreenState extends State<MainScreen> {
               Navigator.of(context).pushReplacementNamed(HomePage.routeName);
             },
           ),
+=======
+          // IconButton(
+          //   icon:
+          //   ClipOval(
+          //     child: Image.asset("images/profile.png"),
+          //   ),
+          //   onPressed: () {},
+          // ),
+>>>>>>> 1a2f284daeed3f192c4da7cb632ce9ea696bd2ff
           FlatButton( //Riya added this log out button
             child: Row(
               children: <Widget>[
@@ -76,7 +87,7 @@ class _MainScreenState extends State<MainScreen> {
             onPressed: (){
               Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
             },
-          ),
+          )
         ],
       ),
 
@@ -127,7 +138,7 @@ class _MainScreenState extends State<MainScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    //builder: (context) => _EventScreen(),
+                    builder: (context) => AddTrip(),
                   ),
                 );
               },

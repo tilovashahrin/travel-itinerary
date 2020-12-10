@@ -1,6 +1,7 @@
 //import 'package:flutt/home.page.dart';
 import 'package:travel_app/classes/demo_localization.dart';
-import 'chart.dart';
+import 'file:///C:/Users/Tilova.LAPTOP-LB1DPCE0/Desktop/Fall%202020/Mobile%20Devices/major-group-project-heather-tilova-riya/travel_app/lib/DataTables/OsakaFlight.dart';
+
 import 'login_screen.dart';
 import 'signup.dart';
 import 'loginProgess/screens/authentication.dart';
@@ -9,7 +10,8 @@ import 'package:flutter/material.dart';
 import 'home_screen/main_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
-//AuthService appAuth = new AuthService();
+
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
@@ -68,12 +70,11 @@ class _MyAppState extends State<MyApp> {
           }
           return supportedLocales.first;
         },
-        home:  LoginScreen(),
+        home: MainScreen(),
         routes: {
           SignupScreen.routeName: (ctx)=> SignupScreen(),
           LoginScreen.routeName: (ctx)=> LoginScreen(),
           MainScreen.routeName: (ctx)=> MainScreen(),
-          HomePage.routeName: (ctx)=> HomePage(),
         },
       ),
     );
