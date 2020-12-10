@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:travel_app/trip_manager/add_trip.dart';
 import '../login_screen.dart';
 import 'timeline.dart';
 import '../like_screen.dart';
 import '../trip_manager/view_trip_list.dart';
 import 'appbar_body.dart'; //had to change this to run -riya
 import 'popularPlaces.dart';
-import 'package:travel_app/signup_screen.dart';
 import 'package:travel_app/login_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -120,7 +120,7 @@ class _MainScreenState extends State<MainScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    //builder: (context) => _EventScreen(),
+                    builder: (context) => AddTrip(),
                   ),
                 );
               },

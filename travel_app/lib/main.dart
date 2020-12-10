@@ -9,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'home_screen/main_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
-//AuthService appAuth = new AuthService();
+
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
@@ -68,7 +69,7 @@ class _MyAppState extends State<MyApp> {
           }
           return supportedLocales.first;
         },
-        home: MainScreen(),
+        home: LoginScreen(),
         routes: {
           SignupScreen.routeName: (ctx)=> SignupScreen(),
           LoginScreen.routeName: (ctx)=> LoginScreen(),

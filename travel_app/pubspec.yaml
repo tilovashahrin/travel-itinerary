@@ -38,6 +38,12 @@ dependencies:
   provider: ^4.0.4
   flutter_localizations: # Add this line
     sdk: flutter
+  flutter_map:
+  latlong:
+  geolocator:
+  google_maps_flutter:
+  geocoder:
+
 
 dev_dependencies:
   flutter_test:
