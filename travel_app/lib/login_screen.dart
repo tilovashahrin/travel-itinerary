@@ -3,31 +3,33 @@ import 'package:provider/provider.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:travel_app/classes/demo_localization.dart';
-import 'signup_screen.dart';
+import 'signup.dart';
 import 'home_screen.dart';
 import 'loginProgess/screens/authentication.dart';
 import 'package:flutter/material.dart';
 import 'loginProgess/screens/language.dart';
 import 'main.dart';
-//import 'packages:localization/routes/routes_names';
-import 'package:shared_preferences/shared_preferences.dart';
+//inspired to make the login page from https://pusher.com/tutorials/login-ui-flutter
+//internationlization https://flutter.dev/docs/development/accessibility-and-localization/internationalization
+
 class LoginScreen extends StatefulWidget {
   static const routeName = '/login';
   LoginScreen({Key key}) : super(key: key);
   @override
   _LoginScreenState createState() => _LoginScreenState();
 
-}
+} //class for login
 
 class _LoginScreenState extends State<LoginScreen> {
 
-  final GlobalKey<FormState> _formKey = GlobalKey();
+  final GlobalKey<FormState> formKey = GlobalKey();
 
-  Map<String, String> _authData = {
+  Map<String, String> auth = {
    'Email' : '',
     'password': ''
   };
 
+  //similar to my sign up screen, err dialog
   void _showErrorDialog(String msg)
   {
     showDialog(
@@ -46,19 +48,19 @@ class _LoginScreenState extends State<LoginScreen> {
       )
     );
   }
-
-  Future<void> _submit() async
+//validation for the email and password
+  Future<void> submit() async
   {
-    if(!_formKey.currentState.validate())
+    if(!formKey.currentState.validate())
       {
         return;
       }
-    _formKey.currentState.save();
+    formKey.currentState.save();
 
     try{
       await Provider.of<Authentication>(context, listen: false).logIn(
-          _authData[DemoLocalization.of(context).getTranslatedValue('_Email')],
-          _authData[DemoLocalization.of(context).getTranslatedValue('_Password')]
+          auth[DemoLocalization.of(context).getTranslatedValue('_Email')],
+          auth[DemoLocalization.of(context).getTranslatedValue('_Password')]
       );
       Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
 
@@ -69,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 
   }
-  void _changeLanguage(Language language) {
+  void changeLanguage(Language language) { //gets translated version of the login page
     Locale _temp;
     switch (language.languageCode) {
       case 'en':
@@ -112,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
            ),
            child: DropdownButton(
              onChanged: (Language language){
-               _changeLanguage(language);
+               changeLanguage(language);
              },
              underline:SizedBox(),
              icon:Icon(
@@ -123,13 +125,13 @@ class _LoginScreenState extends State<LoginScreen> {
                  .map<DropdownMenuItem<Language>>((lang)=> DropdownMenuItem(
                value:lang,
                child:Row(
-                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+                 mainAxisAlignment: MainAxisAlignment.spaceAround, //flutter space around
                  children:<Widget>[ Text(lang.name, style: TextStyle(fontSize: 20),), Text(lang.flag)],
                ),
              )) .toList(),
            ),
          ),
-         FlatButton(
+         FlatButton( //button used to sign in
            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
            child: Row(
              children: <Widget>[
@@ -140,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
            textColor: Colors.white,
 
            onPressed: (){
-             Navigator.of(context).pushReplacementNamed(SignupScreen.routeName);
+             Navigator.of(context).pushReplacementNamed(SignupScreen.routeName); //navigates to sign up screen
             },
           ),
         ],
@@ -179,8 +181,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: 300,
                 padding: EdgeInsets.all(16),
                 child: Form(
-                  key: _formKey,
-                  child: SingleChildScrollView(
+                  key: formKey,
+                  child: SingleChildScrollView( //incase the container exceeds size, can scroll
                     child: Column(
                       children: <Widget>[
                         //email
@@ -195,7 +197,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: TextStyle(color: Colors.white),
                           validator: (value)
                           {
-                            if(value.isEmpty || !value.contains('@'))
+                            if(value.isEmpty || !value.contains('@')) //for email @ to work
                               {
                                 return DemoLocalization.of(context).getTranslatedValue('InvE');
                               }
@@ -203,7 +205,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                           onSaved: (value)
                           {
-                            _authData[DemoLocalization.of(context).getTranslatedValue('_Email')] = value;
+                            auth[DemoLocalization.of(context).getTranslatedValue('_Email')] = value;
                           },
 
 
@@ -230,7 +232,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           },
                           onSaved: (value)
                           {
-                            _authData[DemoLocalization.of(context).getTranslatedValue('_Password')] = value;
+                            auth[DemoLocalization.of(context).getTranslatedValue('_Password')] = value;
                           },
                         ),
                         SizedBox(
@@ -242,7 +244,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           onPressed: ()
                           {
-                            _submit();
+                            submit();
                           },
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),

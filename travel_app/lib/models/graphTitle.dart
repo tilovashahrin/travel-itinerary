@@ -1,7 +1,7 @@
 import 'data_consumption.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
-
+//data graph
 class DataChart extends StatelessWidget {
   final List<Travel> data;
   const DataChart({Key key, this.data}) : super(key: key);
@@ -12,8 +12,8 @@ class DataChart extends StatelessWidget {
         data: data,
         id: "Travel",
         domainFn: (Travel series, _) => series.month,
-        measureFn: (Travel series, _) => series.dataInGb,
-        colorFn: (Travel seies, _) => seies.barColor,
+        measureFn: (Travel series, _) => series.numbers,
+        colorFn: (Travel series, _) => series.barColor,
       )
     ];
     return Container(

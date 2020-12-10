@@ -5,6 +5,8 @@ import 'dart:io';
 import 'home_screen.dart';
 import 'login_screen.dart';
 
+//starts the sign up stateful widget, inspired by flutter demos on how to create a form
+//https://flutter.dev/docs/cookbook/forms/validation
 class SignupScreen extends StatefulWidget {
   static const routeName = '/signup';
   @override
@@ -13,21 +15,24 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
 
-  final GlobalKey<FormState> _formKey = GlobalKey();
-  TextEditingController _passwordController = new TextEditingController();
+  final GlobalKey<FormState> formKey = GlobalKey();
+  TextEditingController passwordCon = new TextEditingController();
 
-  Map<String, String> _authData = {
+  //creates authentication for email and password
+  Map<String, String> auth = {
     'email' : '',
     'password' : ''
   };
 
-  void _showErrorDialog(String msg)
+  //exception if an error occurs
+  // ignore: non_constant_identifier_names
+  void Error(String errmsg)
   {
     showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
           title: Text('An Error Occured'),
-          content: Text(msg),
+          content: Text(errmsg),
           actions: <Widget>[
             FlatButton(
               child: Text('Okay'),
@@ -39,26 +44,26 @@ class _SignupScreenState extends State<SignupScreen> {
         )
     );
   }
-
-  Future<void> _submit() async
+//submit button
+  Future<void> _sub() async
   {
-    if(!_formKey.currentState.validate())
+    if(!formKey.currentState.validate()) //validates and saves
       {
         return;
       }
-    _formKey.currentState.save();
+    formKey.currentState.save();
 
     try{
-      await Provider.of<Authentication>(context, listen: false).signUp(
-          _authData['email'],
-          _authData['password']
+      await Provider.of<Authentication>(context, listen: false).signUp( //authentication to sign up for email and pass
+          auth['email'],
+          auth['password']
       );
       Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
 
     } catch(error)
     {
-      var errorMessage = 'Authentication Failed. Please try again later.';
-      _showErrorDialog(errorMessage);
+      var errorMessage = 'Authentication Failed. Please try again later.';  //if failed return
+      Error(errorMessage);
     }
 
   }
@@ -76,7 +81,7 @@ class _SignupScreenState extends State<SignupScreen> {
           FlatButton(
             child: Row(
               children: <Widget>[
-                Text('Login'),
+                Text('Login'), //button to login
                 Icon(Icons.person)
               ],
             ),
@@ -92,7 +97,7 @@ class _SignupScreenState extends State<SignupScreen> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('images/loginbg1.jpg'),
+                image: AssetImage('images/loginbg1.jpg'), //background image
                 fit: BoxFit.cover,
               ),
 
@@ -100,9 +105,9 @@ class _SignupScreenState extends State<SignupScreen> {
 
           ),
           Center(
-            child: Card(
+            child: Card( //inspired  from same flutter https://api.flutter.dev/flutter/material/Card-class.html
               elevation: 0,
-              color: Colors.transparent,
+              color: Colors.transparent,  //make card transparent
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),
@@ -111,7 +116,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 width: 300,
                 padding: EdgeInsets.all(16),
                 child: Form(
-                  key: _formKey,
+                  key: formKey,
                   child: SingleChildScrollView(
                     child: Column(
                       children: <Widget>[
@@ -134,7 +139,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           },
                           onSaved: (value)
                           {
-                            _authData['email'] = value;
+                            auth['email'] = value;
                           },
                         ),
 
@@ -149,7 +154,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           keyboardType: TextInputType.emailAddress,
                           style: TextStyle(color: Colors.white),
                           obscureText: true,
-                          controller: _passwordController,
+                          controller: passwordCon,
                           validator: (value)
                           {
                             if(value.isEmpty || value.length<=5)
@@ -160,7 +165,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           },
                           onSaved: (value)
                           {
-                            _authData['password'] = value;
+                            auth['password'] = value;
                           },
                         ),
 
@@ -177,9 +182,9 @@ class _SignupScreenState extends State<SignupScreen> {
                           obscureText: true,
                           validator: (value)
                           {
-                            if(value.isEmpty || value != _passwordController.text)
+                            if(value.isEmpty || value != passwordCon.text)
                             {
-                              return 'invalid password';
+                              return 'invalid password'; //returns invalid if password is invalid
                             }
                             return null;
                           },
@@ -197,7 +202,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           ),
                           onPressed: ()
                           {
-                            _submit();
+                            _sub();
                           },
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30),

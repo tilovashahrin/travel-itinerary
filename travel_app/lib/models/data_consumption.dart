@@ -5,9 +5,9 @@ import 'package:flutter/foundation.dart';
 
 class Travel {
   final String month;
-  final double dataInGb;
+  final double numbers;
   final charts.Color barColor;
 
   Travel(
-      {@required this.month, @required this.dataInGb, @required this.barColor});
+      {@required this.month, @required this.numbers, @required this.barColor});
 }

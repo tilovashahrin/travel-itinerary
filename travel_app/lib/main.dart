@@ -2,7 +2,7 @@
 import 'package:travel_app/classes/demo_localization.dart';
 import 'chart.dart';
 import 'login_screen.dart';
-import 'signup_screen.dart';
+import 'signup.dart';
 import 'loginProgess/screens/authentication.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
