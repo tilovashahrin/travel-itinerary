@@ -1,5 +1,7 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import '../chart.dart';
 import '../login_screen.dart';
 import 'timeline.dart';
 import '../like_screen.dart';
@@ -33,6 +35,7 @@ class _MainScreenState extends State<MainScreen> {
               currentAccountPicture: new CircleAvatar(
                 backgroundImage: AssetImage('images/profile.png'),
               ),
+
             ),
           ],
         ),
@@ -42,14 +45,25 @@ class _MainScreenState extends State<MainScreen> {
         elevation: 0,
         leading: Builder(
           builder: (context) => IconButton(
-          icon: new Icon(Icons.menu),
-          color: Colors.black,
+            icon: new Icon(Icons.menu),
+            color: Colors.black,
             onPressed: ()=> Scaffold.of(context).openDrawer(
 
             ),
           ),
         ),
         actions: [
+          FlatButton( //Riya added this log out button
+            child: Row(
+              children: <Widget>[
+                Icon(Icons.insert_chart)
+              ],
+            ),
+
+            onPressed: (){
+              Navigator.of(context).pushReplacementNamed(HomePage.routeName);
+            },
+          ),
           IconButton(
             icon:
             ClipOval(
@@ -69,7 +83,7 @@ class _MainScreenState extends State<MainScreen> {
             onPressed: (){
               Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
             },
-          )
+          ),
         ],
       ),
 
