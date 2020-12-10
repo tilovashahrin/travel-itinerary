@@ -1,5 +1,6 @@
 import 'day.dart';
 import 'package:intl/intl.dart';
+import 'delete_components.dart';
 
 class Trip {
   //add user id when accounts implemented
@@ -8,6 +9,7 @@ class Trip {
   String location; //change to list later for multiple locations? 
   DateTime startDate, endDate; //start and end date of trip
   int id; //id for databae
+  bool _toBeDeleted = false;
 
   //constructor
   Trip({this.days, this.name, this.location, this.description, this.startDate, this.endDate, this.id});
@@ -27,7 +29,37 @@ class Trip {
     this.days = tripDays;
   }
 
-    //fromMap function
+  void markForDeletion(){
+    this._toBeDeleted = true;
+  }
+
+  bool checkForDeletion(){
+    return _toBeDeleted;
+  }
+
+  void shortenTrip(){
+    List<Day> oldDays = this.days;
+    this.initDays();
+    for (int i = 0; i < this.days.length; i++){
+      this.days[i].events = oldDays[i].events;
+      this.days[i].id = oldDays[i].id;
+    }
+    for (int i = this.days.length; i < oldDays.length; i++){
+      //delete leftover days from database
+      deleteDay(oldDays[i]);
+    }
+  }
+
+  void lengthenTrip(){
+    List<Day> oldDays = this.days;
+    this.initDays();
+    for (int i = 0; i < oldDays.length; i++){
+      this.days[i].events = oldDays[i].events;
+      this.days[i].id = oldDays[i].id;
+    }    
+  }
+
+  //fromMap function
   Trip.fromMap(Map<String, dynamic> m){
     this.id = m['id'];
     this.name = m['name'];
