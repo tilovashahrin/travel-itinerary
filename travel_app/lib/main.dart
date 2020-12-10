@@ -1,5 +1,6 @@
 //import 'package:flutt/home.page.dart';
 import 'package:travel_app/classes/demo_localization.dart';
+import 'package:travel_app/home_screen/flightInfo.dart';
 
 import 'login_screen.dart';
 import 'signup_screen.dart';
@@ -69,7 +70,7 @@ class _MyAppState extends State<MyApp> {
           }
           return supportedLocales.first;
         },
-        home: LoginScreen(),
+        home: MainScreen(),
         routes: {
           SignupScreen.routeName: (ctx)=> SignupScreen(),
           LoginScreen.routeName: (ctx)=> LoginScreen(),

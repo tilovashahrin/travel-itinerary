@@ -58,12 +58,4 @@ class TripList{
     return true;
   }
 
-  void shortenTrip(Trip trip, DateTime newStart, DateTime newEnd){
-
-  }
-
-  void lengthenTrip(Trip trip, DateTime newStart, DateTime newEnd){
-    
-  }
-
 }

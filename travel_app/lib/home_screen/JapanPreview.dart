@@ -35,7 +35,7 @@ class JapanPreview extends StatelessWidget {
           ),
           new GestureDetector(
             onTap: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => flightInfo()));
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => flightInfoJap()));
             },
            child: Container(
               width: 100.0,

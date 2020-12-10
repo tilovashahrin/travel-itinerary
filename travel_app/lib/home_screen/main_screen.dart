@@ -50,13 +50,13 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ),
         actions: [
-          IconButton(
-            icon:
-            ClipOval(
-              child: Image.asset("images/profile.png"),
-            ),
-            onPressed: () {},
-          ),
+          // IconButton(
+          //   icon:
+          //   ClipOval(
+          //     child: Image.asset("images/profile.png"),
+          //   ),
+          //   onPressed: () {},
+          // ),
           FlatButton( //Riya added this log out button
             child: Row(
               children: <Widget>[

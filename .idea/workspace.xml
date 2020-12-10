@@ -30,14 +30,14 @@
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/OneDrive/Desktop/major-group-project-heather-tilova-riya" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.updates" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\riya9\AndroidStudioProjects\major-group-project-heather-tilova-riya\travel_app\lib" />
-      <recent name="C:\Users\riya9\AndroidStudioProjects\major-group-project-heather-tilova-riya\travel_app\lib\loginProgess" />
       <recent name="C:\Users\riya9\AndroidStudioProjects\major-group-project-heather-tilova-riya\travel_app\lib\loginProgess\screens" />
+      <recent name="C:\Users\riya9\AndroidStudioProjects\major-group-project-heather-tilova-riya\travel_app\lib\loginProgess" />
+      <recent name="C:\Users\riya9\AndroidStudioProjects\major-group-project-heather-tilova-riya\travel_app\lib" />
       <recent name="C:\Users\riya9\AndroidStudioProjects\major-group-project-heather-tilova-riya\travel_app\images" />
     </key>
   </component>
@@ -124,38 +124,42 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="88" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1607444447838" />
-    <state x="331" y="74" key="#main.dart" timestamp="1607537623074">
+    <state x="331" y="74" key="#main.dart" timestamp="1607624669932">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="331" y="74" key="#main.dart/0.0.1280.680@0.0.1280.680" timestamp="1607537623074" />
+    <state x="331" y="74" key="#main.dart/0.0.1280.680@0.0.1280.680" timestamp="1607624669932" />
     <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1607535500758">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1607535500758" />
-    <state width="1047" height="240" key="GridCell.Tab.0.bottom" timestamp="1607535572087">
+    <state width="1047" height="145" key="GridCell.Tab.0.bottom" timestamp="1607621200154">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1047" height="240" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1607535572087" />
-    <state width="1047" height="240" key="GridCell.Tab.0.center" timestamp="1607535572086">
+    <state width="1047" height="145" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1607621200154" />
+    <state width="1047" height="145" key="GridCell.Tab.0.center" timestamp="1607621200153">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1047" height="240" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1607535572086" />
-    <state width="1047" height="240" key="GridCell.Tab.0.left" timestamp="1607535572086">
+    <state width="1047" height="145" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1607621200153" />
+    <state width="1047" height="145" key="GridCell.Tab.0.left" timestamp="1607621200153">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1047" height="240" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1607535572086" />
-    <state width="1047" height="240" key="GridCell.Tab.0.right" timestamp="1607535572086">
+    <state width="1047" height="145" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1607621200153" />
+    <state width="1047" height="145" key="GridCell.Tab.0.right" timestamp="1607621200153">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state width="1047" height="240" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1607535572086" />
-    <state x="142" y="0" key="SettingsEditor" timestamp="1607449027992">
+    <state width="1047" height="145" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1607621200153" />
+    <state x="142" y="0" key="SettingsEditor" timestamp="1607558194978">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1607449027992" />
-    <state x="94" y="94" width="1093" height="493" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1607443158390">
+    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1607558194978" />
+    <state x="94" y="94" width="1093" height="493" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1607620456644">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="94" y="94" width="1093" height="493" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1280.680@0.0.1280.680" timestamp="1607443158390" />
+    <state x="94" y="94" width="1093" height="493" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1280.680@0.0.1280.680" timestamp="1607620456644" />
+    <state x="-433" y="70" width="1250" height="665" key="dock-window-1" timestamp="1607616525671">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="-433" y="70" width="1250" height="665" key="dock-window-1/0.0.1280.680@0.0.1280.680" timestamp="1607616525671" />
     <state x="297" y="150" key="run.anything.popup" timestamp="1607456841874">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

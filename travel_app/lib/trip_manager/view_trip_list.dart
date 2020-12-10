@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:travel_app/trip_manager/trip_components/delete_components.dart';
+import 'package:travel_app/trip_manager/trip_components/save_trips.dart';
 import 'add_trip.dart';
 import 'trip_components/trip.dart';
 import 'trip_components/trip_list.dart';
+//import 'trip_components/day.dart';
 import 'utils.dart';
 import 'list_days.dart';
-import 'local_storage/trip_model/trip_model.dart';
-import 'local_storage/day_model/day_model.dart';
 import 'local_storage/assemble_trips.dart';
 
 class ViewTripList extends StatefulWidget {
@@ -18,16 +19,13 @@ class ViewTripList extends StatefulWidget {
 
 class _ViewTripListState extends State<ViewTripList> {
   TripList _tripList = new TripList();
-  int _lastInsertedTripId = 0;
-  int _lastInsertedDayId = 0;
+  // int _lastInsertedTripId = 0;
+  // int _lastInsertedDayId = 0;
   int tripNum = 0;
-  TripModel _tripModel = new TripModel();
-  DayModel _dayModel = new DayModel();
 
   @override
   void initState() {
     _getTrips();
-
     super.initState();
   }
 
@@ -37,6 +35,14 @@ class _ViewTripListState extends State<ViewTripList> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Your Trips"),
+        leading: BackButton(
+          onPressed: () {
+            //save changes to database
+            saveTrips(_tripList);
+            //return to main page
+            Navigator.pop(context);
+          }
+        )
       ),
       body: Align(
         alignment: Alignment.topLeft,
@@ -92,16 +98,8 @@ class _ViewTripListState extends State<ViewTripList> {
     if (e != null){ 
       //if user enters trip
       Trip newTrip = e;
-
-      //insert new trip into database
-      _lastInsertedTripId = await _tripModel.insertTrip(newTrip);
-      newTrip.id = _lastInsertedTripId;
-      //insert days created by trip into database
       newTrip.initDays();
-      for (int i = 0; i < newTrip.days.length; i++){
-        _lastInsertedDayId = await _dayModel.insertDay(newTrip.days[i]);
-        newTrip.days[i].id = _lastInsertedDayId;
-      }
+
       setState(() {
         _tripList.trips.add(newTrip);
         tripNum++;
@@ -111,21 +109,29 @@ class _ViewTripListState extends State<ViewTripList> {
   }
 
   Future<void> _showDayList(Trip currentTrip, int currentIndex) async {
-    var d = await Navigator.push(
+    var t = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) {
-        return DayList(trip : currentTrip); //navigate to page with list of trip's days
+        return DayList(trip : currentTrip, tripList: _tripList,); //navigate to page with list of trip's days
       })
     );
-
-      //save any changes to days
-      for (int i = 0; i < d.length; i++){
-        d[i].id =_tripList.trips[currentIndex].days[i].id;
-        _dayModel.updateDay(d[i]);
+    if (t != null){
+      Trip returnedTrip = t;
+      if (returnedTrip.checkForDeletion()) {
+        //call function to delete from database
+        await deleteTrip(currentTrip);
+        //delete from this page's list
+        setState(() {
+        _tripList.trips.remove(currentTrip);
+        tripNum = _tripList.trips.length;     
+        });
       }
-    setState(() {
-      _tripList.trips[currentIndex].days = d;
-    });
+      else {
+      setState(() {
+        _tripList.trips[currentIndex] = returnedTrip;
+      });
+    }
+  }
   }
 
 }

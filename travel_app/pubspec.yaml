@@ -43,7 +43,7 @@ dependencies:
   geolocator:
   google_maps_flutter:
   geocoder:
-
+  charts_flutter:
 
 dev_dependencies:
   flutter_test:
