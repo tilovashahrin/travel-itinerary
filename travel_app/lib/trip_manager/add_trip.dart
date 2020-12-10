@@ -3,6 +3,7 @@ import 'trip_components/trip.dart';
 import 'trip_components/trip_list.dart';
 import 'utils.dart';
 import 'package:date_range_picker/date_range_picker.dart' as DateRangePicker;
+import 'maps/select_location.dart';
 
 class AddTrip extends StatefulWidget {
   AddTrip({Key key, this.title, this.tripList}) : super(key: key);
@@ -14,11 +15,12 @@ class AddTrip extends StatefulWidget {
 }
 
 class _AddTripState extends State<AddTrip> {
-  String name, location, description;
+  String name, description;
   DateTime startDate, endDate;
   String startDateString = "No Date Chosen";
   String endDateString = "No Date Chosen";
   TripList _tripList;
+  String location = "No Location Chosen";
 
   @override
   void initState() {
@@ -55,19 +57,18 @@ class _AddTripState extends State<AddTrip> {
                   ),
                 ),
             //Location
-              Container(
-                child:
-                  Text("Location: ", textScaleFactor: 1, textAlign: TextAlign.left),
-                ),
-                Container(
-                  padding: EdgeInsets.only(bottom: 10),
-                  width: 0.8 * MediaQuery.of(context).size.width,
-                  child: TextField(
-                    onChanged: (text) {
-                      location = text;
-                    }
-                  ),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  //display current selected date
+                  Text("Location: " + location, textScaleFactor: 1, textAlign: TextAlign.left),
+                  RaisedButton(
+                      child: Text('Select'),
+                      onPressed: () {
+                        getLocation();
+                      })
+                ],
+              ),
             //Description
               Container(
                 child:
@@ -192,6 +193,15 @@ class _AddTripState extends State<AddTrip> {
           endDateString= toDateString(endDate) + " ${endDate.year}";
         }
       );
+    }
+  }
+
+   Future<void> getLocation() async {
+    var loc = await Navigator.push(context, MaterialPageRoute(builder: (context) {return ShowLocation();}));
+    if (loc != null){
+      setState(() {
+        location = loc[0];
+      });
     }
   }
 

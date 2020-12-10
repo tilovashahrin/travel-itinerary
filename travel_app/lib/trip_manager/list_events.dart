@@ -8,6 +8,7 @@ import 'event_notifications.dart';
 import 'trip_components/delete_components.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
+import 'package:geocoding/geocoding.dart' as gc;
 
 class EventList extends StatefulWidget {
   EventList({Key key, this.title, this.day}) : super(key: key);
@@ -95,13 +96,6 @@ class _EventListState extends State<EventList> {
         _deleteEvent(event);
       }
       else if (!returnedEvent.isSameAs(event)){
-      //event has been modified
-        //replace event notification
-          // _notifications.deleteNotification(event.notificationId);
-          // returnedEvent.notificationId = await _addEventNotification(returnedEvent, eventsDay.date);
-        //update database
-       // await _model.updateEvent(returnedEvent);
-        //update event list and set state
         setState(() {
         eventsDay.events[index] = returnedEvent; //replace event in list
         eventsDay.orderEvents(); //resort order of list
@@ -122,9 +116,6 @@ class _EventListState extends State<EventList> {
       newEvent.dayId = eventsDay.id;
       //create notification for event
       newEvent.notificationId = await _addEventNotification(newEvent, eventsDay.date);
-      //insert new event into database
-      //_lastInsertedId = await _model.insertEvent(newEvent);
-     // newEvent.id = _lastInsertedId;
       setState(() {
         eventsDay.events.add(newEvent); //add event to list
         eventsDay.orderEvents(); //resort order of list
@@ -134,7 +125,8 @@ class _EventListState extends State<EventList> {
   }
 
   Future<int> _addEventNotification(Event e, DateTime date) async {
-     tz.setLocalLocation(tz.getLocation('America/Detroit')); //hardcode local location until geocoding implemented
+    gc.Location l = new gc.Location(latitude: e.lat, longitude: e.lng);
+    tz.setLocalLocation(tz.getLocation('America/Detroit')); //hardcode local location until geocoding implemented
     var when = tz.TZDateTime(tz.local, date.year, date.month, date.day, e.startTime.hour, e.startTime.minute - e.notificationTime);
     var n = await _notifications.sendNotificationLater(e.name, e.description, when, null);
     return n;

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:time_range_picker/time_range_picker.dart';
 import 'trip_components/day.dart';
 import 'trip_components/event.dart';
+import 'maps/select_location.dart';
+import 'package:latlong/latlong.dart';
 
 class AddEvent extends StatefulWidget {
   AddEvent({Key key, this.title, this.day}) : super(key: key);
@@ -13,10 +15,12 @@ class AddEvent extends StatefulWidget {
 }
 
 class _AddEventState extends State<AddEvent> {
-  String name, location, description;
+  String name, description;
   TimeOfDay startTime, endTime;
   String startTimeString = "No Time Chosen";
   String endTimeString = "No Time Chosen";
+  String location = "No Location Selected";
+  LatLng locCoords;
 
   //temporary UI
   @override
@@ -50,19 +54,18 @@ class _AddEventState extends State<AddEvent> {
                   ),
                 ),
             //Location
-              Container(
-                child:
-                  Text("Location: ", textScaleFactor: 1, textAlign: TextAlign.left),
-                ),
-                Container(
-                  padding: EdgeInsets.only(bottom: 10),
-                  width: 0.8 * MediaQuery.of(context).size.width,
-                  child: TextField(
-                    onChanged: (text) {
-                      location = text;
-                    }
-                  ),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  //display current selected date
+                  Text("Location: " + location, textScaleFactor: 1, textAlign: TextAlign.left),
+                  RaisedButton(
+                      child: Text('Select'),
+                      onPressed: () {
+                        getLocation();
+                      })
+                ],
+              ),
             //Description
               Container(
                 child:
@@ -109,15 +112,17 @@ class _AddEventState extends State<AddEvent> {
         builder: (context) =>  FloatingActionButton(
           onPressed: () {
           //if all fields have been changed and times have been selected
-            if (name != null && location != null &&  description!= null
-              && startTime != null && endTime != null) {
+            if (name != null && description!= null
+              && startTime != null && endTime != null && locCoords != null) {
             //create Event instance
               Event entry = Event(
                   name: name,
                   location: location,
                   description: description,
                   startTime: startTime,
-                  endTime: endTime
+                  endTime: endTime,
+                  lat: locCoords.latitude,
+                  lng: locCoords.longitude
               );
             //check if time conflicts with pre-existing events
               if (widget.day.timeSlotAvailable(entry)) {
@@ -175,7 +180,16 @@ class _AddEventState extends State<AddEvent> {
       startTimeString= startTime.format(context);
       endTimeString= endTime.format(context);
     });
+  }
 
+  Future<void> getLocation() async {
+    var loc = await Navigator.push(context, MaterialPageRoute(builder: (context) {return ShowLocation();}));
+    if (loc != null){
+      setState(() {
+        location = loc[0];
+        locCoords = loc[1];
+      });
+    }
   }
 
 }

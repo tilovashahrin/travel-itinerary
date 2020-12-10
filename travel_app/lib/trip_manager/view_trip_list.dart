@@ -4,7 +4,6 @@ import 'package:travel_app/trip_manager/trip_components/save_trips.dart';
 import 'add_trip.dart';
 import 'trip_components/trip.dart';
 import 'trip_components/trip_list.dart';
-//import 'trip_components/day.dart';
 import 'utils.dart';
 import 'list_days.dart';
 import 'local_storage/assemble_trips.dart';
@@ -19,8 +18,6 @@ class ViewTripList extends StatefulWidget {
 
 class _ViewTripListState extends State<ViewTripList> {
   TripList _tripList = new TripList();
-  // int _lastInsertedTripId = 0;
-  // int _lastInsertedDayId = 0;
   int tripNum = 0;
 
   @override
@@ -32,6 +29,9 @@ class _ViewTripListState extends State<ViewTripList> {
   //temporary UI
   @override
   Widget build(BuildContext context) {
+
+    
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Your Trips"),
@@ -133,5 +133,6 @@ class _ViewTripListState extends State<ViewTripList> {
     }
   }
   }
+
 
 }
