@@ -6,6 +6,8 @@ import '../like_screen.dart';
 import '../trip_manager/view_trip_list.dart';
 import 'appbar_body.dart'; //had to change this to run -riya
 import 'popularPlaces.dart';
+import 'package:travel_app/signup_screen.dart';
+import 'package:travel_app/login_screen.dart';
 
 class MainScreen extends StatefulWidget {
   static const routeName = '/home'; //need for routing -riya
@@ -20,17 +22,32 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return new Scaffold(
       extendBodyBehindAppBar: true,
+      drawer: new Drawer(
+        child: ListView(
+          children: <Widget>[
+            new UserAccountsDrawerHeader(
+              accountName: new Text("Randy Fortier"),
+              accountEmail: new Text('randy.fortier@gmail.com'),
+              currentAccountPicture: new CircleAvatar(
+                backgroundImage: AssetImage('images/profile.png'),
+              ),
+            ),
+          ],
+        ),
+      ),
       appBar: new AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(
-          Icons.menu,
+        leading: Builder(
+          builder: (context) => IconButton(
+          icon: new Icon(Icons.menu),
           color: Colors.black,
-        ),
-          onPressed: (){},
+            onPressed: ()=> Scaffold.of(context).openDrawer(
+
+            ),
+          ),
         ),
         actions: [
           IconButton(

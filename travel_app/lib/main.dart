@@ -68,7 +68,7 @@ class _MyAppState extends State<MyApp> {
           }
           return supportedLocales.first;
         },
-        home: LoginScreen(),
+        home: MainScreen(),
         routes: {
           SignupScreen.routeName: (ctx)=> SignupScreen(),
           LoginScreen.routeName: (ctx)=> LoginScreen(),
