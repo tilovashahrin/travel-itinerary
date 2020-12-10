@@ -56,6 +56,7 @@ Future<TripList> assembleTrips() async {
     }
 
     TripList trips = new TripList(trips: t);
+    trips.orderTrips();
     //return list of assembled trips
     return trips;
   }

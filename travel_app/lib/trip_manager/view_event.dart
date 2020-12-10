@@ -63,18 +63,19 @@ class _ViewEventState extends State<ViewEvent> {
         return EditEvent(day: eventDay, event: event);
       }));
     if (e != null){
-      //user hasn't deleted event
+      //user has changed event
       Event returnedEvent = e;
-      //check if event has been changed
-      if (!returnedEvent.isSameAs(event)){
+      //check if event has been marked for deletion
+      if (returnedEvent.checkForDeletion()){
+        //return to event list with event
+        Navigator.pop(context, returnedEvent);
+      }
+      else {
+        //update page to show changed event
         setState(() {
           event = returnedEvent;          
         });
       }
-    }
-    else {
-    //user has chosen to delete event
-      Navigator.pop(context, null);
     }
   }
 }

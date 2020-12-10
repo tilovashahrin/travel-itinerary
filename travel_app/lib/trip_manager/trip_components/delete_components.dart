@@ -1,5 +1,4 @@
 import 'package:travel_app/trip_manager/trip_components/trip.dart';
-import 'package:travel_app/trip_manager/trip_components/trip_list.dart';
 import 'package:travel_app/trip_manager/trip_components/day.dart';
 import 'package:travel_app/trip_manager/trip_components/event.dart';
 import 'package:travel_app/trip_manager/local_storage/trip_model/trip_model.dart';
@@ -11,26 +10,31 @@ import 'package:travel_app/trip_manager/event_notifications.dart';
 
 Future<void> deleteTrip(Trip trip) async {
   TripModel tripModel = new TripModel();
-  DayModel dayModel = new DayModel();
-  EventModel eventModel = new EventModel();
+
+  for (int i = 0; i < trip.days.length; i++){
+    deleteDay(trip.days[i]);
+  }
   
+  if (trip.id != null){
+    await tripModel.deleteTrip(trip.id);
+  }
 }
 
 Future<void> deleteDay(Day day) async {
   DayModel dayModel = new DayModel();
-  EventModel eventModel = new EventModel();
-  
+  for (int i = 0; i < day.events.length; i++){
+    deleteEvent(day.events[i]);
+  }
+  if (day.id != null){
+    await dayModel.deleteDay(day.id);
+  }
 }
 
 Future<void> deleteEvent(Event event) async {
-  final notifications = new EventNotifications();
   EventModel eventModel = new EventModel();
 
   //delete event from database
-  await eventModel.deleteEvent(event.id);
-  
-  //delete notification for event if it exists
-  // if (event.notificationId != null){
-  // notifications.deleteNotification(event.notificationId);
-  // }
+  if (event.id != null){
+    await eventModel.deleteEvent(event.id);
+  }
 }

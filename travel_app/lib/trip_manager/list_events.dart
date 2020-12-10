@@ -3,7 +3,7 @@ import 'add_event.dart';
 import 'view_event.dart';
 import 'trip_components/day.dart';
 import 'trip_components/event.dart';
-import 'local_storage/event_model/event_model.dart';
+//import 'local_storage/event_model/event_model.dart';
 import 'event_notifications.dart';
 import 'trip_components/delete_components.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -20,8 +20,8 @@ class EventList extends StatefulWidget {
 
 class _EventListState extends State<EventList> {
   int eventNum = 0;
-  int _lastInsertedId = 0;
-  EventModel _model = new EventModel();
+  //int _lastInsertedId = 0;
+  //EventModel _model = new EventModel();
   final _notifications = new EventNotifications();
   Day eventsDay;
   
@@ -90,23 +90,23 @@ class _EventListState extends State<EventList> {
     if (e != null){
       //event has been returned
       Event returnedEvent = e;
-      if (!returnedEvent.isSameAs(event)){
+      if (returnedEvent.checkForDeletion()) {
+        //user chose to delete event
+        _deleteEvent(event);
+      }
+      else if (!returnedEvent.isSameAs(event)){
       //event has been modified
         //replace event notification
           // _notifications.deleteNotification(event.notificationId);
           // returnedEvent.notificationId = await _addEventNotification(returnedEvent, eventsDay.date);
         //update database
-        await _model.updateEvent(returnedEvent);
+       // await _model.updateEvent(returnedEvent);
         //update event list and set state
         setState(() {
         eventsDay.events[index] = returnedEvent; //replace event in list
         eventsDay.orderEvents(); //resort order of list
         });
       }
-    }
-    else {
-    //user chose to delete event
-      _deleteEvent(event);
     }
   }
 
@@ -123,8 +123,8 @@ class _EventListState extends State<EventList> {
       //create notification for event
       newEvent.notificationId = await _addEventNotification(newEvent, eventsDay.date);
       //insert new event into database
-      _lastInsertedId = await _model.insertEvent(newEvent);
-      newEvent.id = _lastInsertedId;
+      //_lastInsertedId = await _model.insertEvent(newEvent);
+     // newEvent.id = _lastInsertedId;
       setState(() {
         eventsDay.events.add(newEvent); //add event to list
         eventsDay.orderEvents(); //resort order of list

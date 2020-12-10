@@ -5,7 +5,9 @@ class Event {
   TimeOfDay startTime, endTime; //start and end times of event
   //DateTime date;
   int id, dayId, notificationId;
-  int notificationTime = 5; //REMOVE VALUE WHEN PICKER FOR NOTIFICATION TIME ADDED
+  int notificationTime = 30; //REMOVE VALUE WHEN PICKER FOR NOTIFICATION TIME ADDED
+  bool _toBeDeleted = false;
+
   //constructor
   Event({this.name, this.location, this.description, this.startTime, this.endTime, this.id, this.dayId});
 
@@ -69,6 +71,14 @@ class Event {
 
     //events are identical, return true
     return true;
+  }
+
+  void markForDeletion(){
+    this._toBeDeleted = true;
+  }
+
+  bool checkForDeletion(){
+    return _toBeDeleted;
   }
 
 }

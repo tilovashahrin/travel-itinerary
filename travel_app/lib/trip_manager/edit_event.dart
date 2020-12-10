@@ -15,32 +15,38 @@ class EditEvent extends StatefulWidget {
 
 class _EditEventState extends State<EditEvent> {
   TextEditingController _nameController, _locationController, _descriptionController;
-  String name, location, description;
-  TimeOfDay startTime, endTime;
-  Event updatedEvent;
+  String _name, _location, _description;
+  TimeOfDay _startTime, _endTime;
+  Event _updatedEvent;
 
   @override
 
   void initState() {
-    updatedEvent = this.widget.event;
-    name = this.widget.event.name;
-    location = this.widget.event.location;  
-    description = this.widget.event.description;
-    startTime = this.widget.event.startTime;
-    endTime = this.widget.event.endTime;
-    _nameController = new TextEditingController(text: name);
-    _locationController = new TextEditingController(text: location);
-    _descriptionController = new TextEditingController(text: description);
     super.initState();
+    _updatedEvent = widget.event;
+    _name = _updatedEvent.name;
+    _location = _updatedEvent.location;  
+    _description = _updatedEvent.description;
+    _startTime = _updatedEvent.startTime;
+    _endTime = _updatedEvent.endTime;
+    _nameController = new TextEditingController(text: _name);
+    _locationController = new TextEditingController(text: _location);
+    _descriptionController = new TextEditingController(text: _description);
   }
 
   Widget build(BuildContext context) {
-    final Event ogEvent = this.widget.event;
+    // final Event _ogEvent = widget.event;
+    // print(_ogEvent.startTime.format(context));
+    // print(_ogEvent.endTime.format(context));
+    // print(_ogEvent.location);
+    // print(_ogEvent.name);
+    // print(_ogEvent.description);
+
 
     return Scaffold(
       appBar: AppBar(
       title: Text("Edit Event"),
-      leading: BackButton(onPressed: () => Navigator.pop(context, ogEvent)),
+      leading: BackButton(onPressed: () => Navigator.pop(context, null)),
       actions: <Widget> [
       //delete event button
         IconButton(
@@ -59,9 +65,10 @@ class _EditEventState extends State<EditEvent> {
                         FlatButton(
                           child: Text('Delete'),
                           onPressed: () {
+                            _updatedEvent.markForDeletion();
                             //return null to view event page
                             Navigator.pop(context, null);
-                            Navigator.pop(context, null);
+                            Navigator.pop(context, _updatedEvent);
                           },
                         ),
                       //cancel delete
@@ -97,7 +104,7 @@ class _EditEventState extends State<EditEvent> {
                     controller: _nameController,
                     //store text when textfield is edited
                     onChanged: (text) {
-                      name = text;
+                      _name = text;
                     }
                   ),
                 ),
@@ -112,7 +119,7 @@ class _EditEventState extends State<EditEvent> {
                   child: TextField(
                     controller: _locationController,
                     onChanged: (text) {
-                      location = text;
+                      _location = text;
                     }
                   ),
                 ),
@@ -127,7 +134,7 @@ class _EditEventState extends State<EditEvent> {
                   child: TextField(
                     controller: _descriptionController,
                     onChanged: (text) {
-                      description = text;
+                      _description = text;
                     }
                   ),
                 ),
@@ -142,7 +149,7 @@ class _EditEventState extends State<EditEvent> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   //display current selected date
-                  Text(startTime.format(context), textScaleFactor: 1, textAlign: TextAlign.left),
+                  Text(_startTime.format(context), textScaleFactor: 1, textAlign: TextAlign.left),
                   RaisedButton(
                       child: Text('Select'),
                       onPressed: () {
@@ -152,7 +159,7 @@ class _EditEventState extends State<EditEvent> {
               ),
             //End Time
             Container(
-                  child: Text("End Time: " + endTime.format(context),
+                  child: Text("End Time: " + _endTime.format(context),
                     textScaleFactor: 1, textAlign: TextAlign.left),
               ),
             ]),
@@ -163,18 +170,18 @@ class _EditEventState extends State<EditEvent> {
         builder: (context) =>  FloatingActionButton(
           onPressed: () {
           //if all fields have been changed and times have been selected
-            if (name != null && location != null &&  description!= null
-              && startTime != null && endTime != null) {
+            if (_name != null && _location != null &&  _description!= null
+              && _startTime != null && _endTime != null)  {
             //update event
-              updatedEvent.name = name;
-              updatedEvent.location = location;
-              updatedEvent.description = description;
-              updatedEvent.startTime = startTime;
-              updatedEvent.endTime = endTime;
+              _updatedEvent.name = _name;
+              _updatedEvent.location = _location;
+              _updatedEvent.description = _description;
+              _updatedEvent.startTime = _startTime;
+              _updatedEvent.endTime = _endTime;
             //check if time conflicts with pre-existing events
-              if (widget.day.timeSlotAvailable(updatedEvent)) {
+              if (widget.day.timeSlotAvailable(_updatedEvent)) {
                 //no conflict, return event to event list
-                Navigator.of(context).pop(updatedEvent);
+                Navigator.of(context).pop(_updatedEvent);
               }
               else {
             //conflict, show dialog telling user to pick a new time
@@ -222,8 +229,8 @@ class _EditEventState extends State<EditEvent> {
       //labels:
     );
     setState(() {
-      startTime = range.startTime;
-      endTime = range.endTime;
+      _startTime = range.startTime;
+      _endTime = range.endTime;
     });
   }
 
