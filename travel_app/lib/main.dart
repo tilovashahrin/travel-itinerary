@@ -80,30 +80,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-/*
-class LoginPage extends StatelessWidget{
-  @override
-  Widget build(BuildContext context){
-    return FutureBuilder(
-      future: Firebase.initializeApp(),
-      builder: (context, snapshot){
-        if(snapshot.hasError){
-          print("Error initiating firebase");
-          return Text('Error initializing firebase');
-        }
-        if(snapshot.connectionState == ConnectionState.done){
-          return MaterialApp(
-            title: 'App',
-            routes: <String, WidgetBuilder>{
-              // Set routes for using the Navigator.
-              '/home': (BuildContext context) => new MainScreen(),
-              '/login': (BuildContext context) => new LoginPage(),
-            },
-          );
-        }else{
-          return LinearProgressIndicator();
-        }
-      },
-    );
-  }
-}*/

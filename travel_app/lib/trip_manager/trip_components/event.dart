@@ -7,9 +7,10 @@ class Event {
   int id, dayId, notificationId;
   int notificationTime = 30; //REMOVE VALUE WHEN PICKER FOR NOTIFICATION TIME ADDED
   bool _toBeDeleted = false;
+  double lat, lng; //coordinates of location
 
   //constructor
-  Event({this.name, this.location, this.description, this.startTime, this.endTime, this.id, this.dayId});
+  Event({this.name, this.location, this.description, this.startTime, this.endTime, this.id, this.dayId, this.lat, this.lng});
 
    //fromMap function
   Event.fromMap(Map<String, dynamic> m){
@@ -80,5 +81,7 @@ class Event {
   bool checkForDeletion(){
     return _toBeDeleted;
   }
+
+  
 
 }
