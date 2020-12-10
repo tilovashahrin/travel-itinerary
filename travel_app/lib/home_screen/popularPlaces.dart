@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'JapanPreview.dart';
 import 'LondonPreview.dart';
 import 'BrazilPreview.dart';
-import 'flightInfo.dart';
+import '../DataTables/OsakaFlight.dart';
 
 class PopularPlaces extends StatelessWidget{
   const PopularPlaces({Key key}) : super(key: key);

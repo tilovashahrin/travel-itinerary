@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class flightInfoJap extends StatefulWidget{
+class LondonFlightData extends StatefulWidget{
 
   @override
-  _flightInfoJapState createState() => _flightInfoJapState();
+  _LondonFlightDataState createState() => _LondonFlightDataState();
 }
 
-class _flightInfoJapState extends State<flightInfoJap>{
+class _LondonFlightDataState extends State<LondonFlightData>{
 
   int _sortColumn = 0;
   int _sortRow;
@@ -15,7 +15,7 @@ class _flightInfoJapState extends State<flightInfoJap>{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flights for Osaka, Japan'),
+        title: Text('Flights for London, England'),
       ),
       body:SingleChildScrollView(
         scrollDirection: Axis.horizontal,
@@ -28,8 +28,8 @@ class _flightInfoJapState extends State<flightInfoJap>{
             DataColumn(label: Text('Date')),
             DataColumn(label: Text('Stops')),
             DataColumn(
-              label: Text('Price (CAD)'),
-              numeric: false,
+                label: Text('Price (CAD)'),
+                numeric: false,
                 onSort: (a, b){
                   setState(() {
                   });
@@ -38,31 +38,31 @@ class _flightInfoJapState extends State<flightInfoJap>{
           ],
           rows: [
             DataRow(cells: [
-              DataCell(Image.asset('images/aircanada.png', height: 30.0, width: 30.0),),
+              DataCell(Image.asset('images/finnair.png', height: 30.0, width: 30.0),),
               DataCell(Text('2:00 - 15:55')),
               DataCell(Text('1 Stop')),
               DataCell(Text('987')),
             ]),
             DataRow(cells: [
-              DataCell(Image.asset('images/aircanada.png', height: 30.0, width: 30.0),),
+              DataCell(Image.asset('images/finnair.png', height: 30.0, width: 30.0),),
               DataCell(Text('2:00 - 23:30')),
               DataCell(Text('2 Stops')),
               DataCell(Text('797')),
             ]),
             DataRow(cells: [
-              DataCell(Image.asset('images/japanairlines.png', height: 30.0, width: 30.0)),
+              DataCell(Image.asset('images/britishairways.png', height: 50.0, width: 50.0)),
               DataCell(Text('9:07 - 20:25')),
               DataCell(Text('1 Stop')),
               DataCell(Text('1203')),
             ]),
             DataRow(cells: [
-              DataCell(Image.asset('images/japanairlines.png', height: 30.0, width: 30.0)),
+              DataCell(Image.asset('images/aircanada.png', height: 30.0, width: 30.0)),
               DataCell(Text('6:07 - 18:00')),
               DataCell(Text('No Stops')),
               DataCell(Text('1590')),
             ]),
             DataRow(cells: [
-              DataCell(Image.asset('images/japanairlines.png', height: 30.0, width: 30.0)),
+              DataCell(Image.asset('images/britishairways.png', height: 50.0, width: 50.0)),
               DataCell(Text('3:45 - 15:00')),
               DataCell(Text('No Stops')),
               DataCell(Text('1203')),

@@ -1,6 +1,6 @@
 //import 'package:flutt/home.page.dart';
 import 'package:travel_app/classes/demo_localization.dart';
-import 'package:travel_app/home_screen/flightInfo.dart';
+import 'file:///C:/Users/Tilova.LAPTOP-LB1DPCE0/Desktop/Fall%202020/Mobile%20Devices/major-group-project-heather-tilova-riya/travel_app/lib/DataTables/OsakaFlight.dart';
 
 import 'login_screen.dart';
 import 'signup_screen.dart';
