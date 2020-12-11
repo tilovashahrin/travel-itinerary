@@ -5,6 +5,11 @@ Group members (3-5) (no Student IDs, only names):
 1. Tilova Shahrin (tilovashahrin)
 2. Heather Cooper (heathercooper-otu)
 3. Riya Shaik(riya9255)
+# Project Description
+Our project is based on a Travel Itinerary log, also known as "Travel Log". The user will first be introducted with a login page, if they do not have a log in page they can sign up with the button on the top right, which requires an email and password with at least 6 characters. Once the account it made, user will see our main page. 
+The main page includes a timeline of "Favourite Places" and posts from tour guides with a bottom app bar. 
+On the top app bar is a menu button, logout button and a chart of "Best Time to visit by Month". On the place cards under "Favourite Places" shows three different location. Once clicked, it shows a data table of available flights with the airline, stops and prices. 
+On the bottom app bar shows a person icon, once pressed the user will see a page that will display their list of events. To add an event, user must click the floating button on the page. Once the information is filled out the event will be displayed on the page, and when clicked user can fill in their itinerary by day. 
 
 ## Overview
 This group project is designed for you to demonstrate the skills that you have learned in this course.  The final project that you submit in the last week of classes will be a completed mobile application.  Non-functional requirements, especially those associated with production-readiness, will be considered extremely important when marking this project.  You are expected to work in a group of three to five students when completing this project.  Students are not permitted to work alone on the project, as this eliminates one of the learning objectives of this assessment.  
