@@ -4,10 +4,8 @@ import 'edit_trip.dart';
 import 'trip_components/trip.dart';
 import 'trip_components/trip_list.dart';
 import 'trip_components/day.dart';
-// import 'local_storage/day_model/day_model.dart';
-import 'utils.dart';
 
-//Page to list each day of a trip. When a day is tapped the user will be shown a list of the day's event.
+//Page to list each day of a trip and edit the trip. When a day is tapped the user will be shown a list of the day's event.
 
 class DayList extends StatefulWidget {
   final String title;
@@ -23,8 +21,6 @@ class _DayListState extends State<DayList> {
   Trip _trip;
   TripList _tripList;
   List<Day> _days;
-  // int _lastInsertedId = 0;
-  // DayModel _model = new DayModel();
 
   void initState() {
     _trip = widget.trip;
@@ -33,20 +29,19 @@ class _DayListState extends State<DayList> {
     super.initState();
   }
 
-  //temporary UI
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text(
+        title: 
+          Text(
               _trip.name,
-              style:
-                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+              style:TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
             ),
-          leading: BackButton(onPressed: () => Navigator.pop(context, _trip), color: Colors.black,),
-          actions: <Widget> [
-        //edit trip button
+        leading: BackButton(onPressed: () => Navigator.pop(context, _trip), color: Colors.black,),
+        actions: <Widget> [
+      //edit trip button
           IconButton(
             color: Colors.black,
             icon: Icon(Icons.settings),
@@ -65,7 +60,7 @@ class _DayListState extends State<DayList> {
             padding: const EdgeInsets.all(5),
             itemCount: _days.length,
             itemBuilder: (BuildContext context, int index) {
-              //day
+            //day
               return GestureDetector(
                 onTap: () {
                   _showEventList(_days[index], index);
@@ -82,15 +77,11 @@ class _DayListState extends State<DayList> {
   }
 
   Future<void> _showEventList(Day currentDay, int currentIndex) async {
-    //navigate to list of events
-    var e = await Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return EventList(
-          day: currentDay); //navigate to page with list of day's events
-    }));
+  //navigate to page with list of day's events
+    var e = await Navigator.push(context, MaterialPageRoute(builder: (context) {return EventList(day: currentDay);}));
     setState(() {
       _days[currentIndex].events = e; //save any changes to events list
     });
-    //_model.updateDay(_days[currentIndex]); //update day in database
   }
 
   Future<void> _editTrip() async {
@@ -115,7 +106,6 @@ class _DayListState extends State<DayList> {
       decoration: BoxDecoration(
               borderRadius: BorderRadius.all(
                 Radius.circular(20),),
-        //border: Border.all(color: Colors.black),
         color: Colors.blue.withOpacity(0.1)
         ),
       padding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 25.0),
@@ -132,6 +122,7 @@ class _DayListState extends State<DayList> {
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold,)
               ),
               alignment: Alignment.topLeft),
+        //Number of events the day has
         Container(
             child: Text(
               "${d.events.length} Events Planned",

@@ -8,6 +8,8 @@ import 'utils.dart';
 import 'list_days.dart';
 import 'local_storage/assemble_trips.dart';
 
+//Page to view all created trips. When a trip is tapped the user will be shown a list of its days.
+
 class ViewTripList extends StatefulWidget {
   ViewTripList({Key key, this.title}) : super(key: key);
   final String title;
@@ -26,7 +28,6 @@ class _ViewTripListState extends State<ViewTripList> {
     super.initState();
   }
 
-  //temporary UI
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +46,7 @@ class _ViewTripListState extends State<ViewTripList> {
                   //return to main page
                   Navigator.pop(context);
                 })),
+                
         body: Align(
           alignment: Alignment.topLeft,
           //List of trips

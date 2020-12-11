@@ -3,6 +3,8 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 import 'package:geocoding/geocoding.dart' as gc;
 
+//Page to show an event's location on a map
+
 class ShowLocation extends StatefulWidget {
   ShowLocation({Key key, this.title, this.address}) : super(key: key);
   final String address;
@@ -19,7 +21,7 @@ class _ShowLocationState extends State<ShowLocation> {
   Marker pointMark;
 
   @override
-void initState() {
+  void initState() {
       super.initState();
       _mapController = MapController();
       _address = this.widget.address;
@@ -49,18 +51,16 @@ void initState() {
           urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
           subdomains: ['a', 'b', 'c'],
         ),
-        //MarkerLayerOptions(markers: [new Marker() = pointMark]),
-        
       ],
     )
     );
   }
 
   Future<void> setPoint(String loc) async {
+    //get coordinates of event's location
     List<gc.Location> p = await gc.locationFromAddress(loc);
     if (p.isNotEmpty) {
       eventLoc = new LatLng(p[0].latitude, p[0].longitude);
-      pointMark = new Marker(point: eventLoc);
     }
 }
 }

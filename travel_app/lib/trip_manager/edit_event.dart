@@ -5,6 +5,8 @@ import 'trip_components/event.dart';
 import 'maps/select_location.dart';
 import 'package:latlong/latlong.dart';
 
+// Page to modify a previously created event
+
 class EditEvent extends StatefulWidget {
   EditEvent({Key key, this.title, this.event, this.day}) : super(key: key);
   final Event event;
@@ -40,52 +42,58 @@ class _EditEventState extends State<EditEvent> {
 
     return Scaffold(
       appBar: AppBar(
-      backgroundColor: Colors.white,
-      title: Text(
-        "Edit Event",
-        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+        backgroundColor: Colors.white,
+        title: Text(
+          "Edit Event",
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+        ),
+        leading: BackButton(
+          color: Colors.black,
+          //return to view_event page with no event
+          onPressed: () => Navigator.pop(context, null)
+        ),
+        actions: <Widget> [
+
+        //delete event button
+          IconButton(
+            icon: Icon(Icons.delete, color: Colors.black,),
+            onPressed: () {
+            //show dialogue asking user to confirm deletion
+              showDialog<void>(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('Delete Event?'),
+                        //content: Text('Permanently delete event?'),
+                        actions: <Widget>[
+                        //confirm delete
+                          FlatButton(
+                            child: Text('Delete'),
+                            onPressed: () {
+                              //mark event for deletion
+                              _updatedEvent.markForDeletion();
+                              //return event to view event page
+                              Navigator.pop(context, null);
+                              Navigator.pop(context, _updatedEvent);
+                            },
+                          ),
+                        //cancel delete
+                          FlatButton(
+                            child: Text('Cancel'),
+                            onPressed: () {
+                              Navigator.pop(context, null);
+                            },
+                          )
+                        ],
+                      );
+                    },
+                  );
+              }
+            ),
+          ]
       ),
-      leading: BackButton(
-        color: Colors.black,
-        onPressed: () => Navigator.pop(context, null)
-      ),
-      actions: <Widget> [
-      //delete event button
-        IconButton(
-          icon: Icon(Icons.delete, color: Colors.black,),
-          onPressed: () {
-          //show dialogue asking user to confirm deletion
-            showDialog<void>(
-                  context: context,
-                  barrierDismissible: false,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text('Delete Event?'),
-                      //content: Text('Permanently delete event?'),
-                      actions: <Widget>[
-                      //confirm delete
-                        FlatButton(
-                          child: Text('Delete'),
-                          onPressed: () {
-                            _updatedEvent.markForDeletion();
-                            //return null to view event page
-                            Navigator.pop(context, null);
-                            Navigator.pop(context, _updatedEvent);
-                          },
-                        ),
-                      //cancel delete
-                        FlatButton(
-                          child: Text('Cancel'),
-                          onPressed: () {},
-                        )
-                      ],
-                    );
-                  },
-                );
-          }
-          ),
-        ]
-      ),
+
       body:
         SingleChildScrollView(
           child: Container(
@@ -94,7 +102,8 @@ class _EditEventState extends State<EditEvent> {
             Column(
             crossAxisAlignment: CrossAxisAlignment.start, 
             children: [
-//Name of Event
+
+            //Name of Event
               Container(
                 child: Text(
                     "Event Name ",
@@ -177,8 +186,9 @@ class _EditEventState extends State<EditEvent> {
                     _getTimes();
                   })
             ]),
-      ),
+          ),
         ),
+
       //Save button
         floatingActionButton:Builder(
         builder: (context) =>  FloatingActionButton(
@@ -249,6 +259,7 @@ class _EditEventState extends State<EditEvent> {
   }
 
   Future<void> getLocation() async {
+    //get location from select_location page
     var loc = await Navigator.push(context, MaterialPageRoute(builder: (context) {return SelectLocation();}));
     if (loc != null){
       setState(() {

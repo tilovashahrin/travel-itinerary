@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 class Event {
   String name, location, description;
   TimeOfDay startTime, endTime; //start and end times of event
-  //DateTime date;
   int id, dayId, notificationId;
-  int notificationTime = 30; //REMOVE VALUE WHEN PICKER FOR NOTIFICATION TIME ADDED
+  int notificationTime = 30;
   bool _toBeDeleted = false;
   double lat, lng; //coordinates of location
 
@@ -81,7 +80,4 @@ class Event {
   bool checkForDeletion(){
     return _toBeDeleted;
   }
-
-  
-
 }

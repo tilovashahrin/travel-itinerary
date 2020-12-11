@@ -4,6 +4,8 @@ import 'trip_components/day.dart';
 import 'trip_components/event.dart';
 import 'maps/show_location.dart';
 
+//Page to view and edit the details of a single event
+
 class ViewEvent extends StatefulWidget {
   ViewEvent({Key key, this.title, this.day, this.event}) : super(key: key);
   final Day day;
@@ -24,7 +26,6 @@ class _ViewEventState extends State<ViewEvent> {
     super.initState();
   }
 
-  //temporary UI
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,10 +33,11 @@ class _ViewEventState extends State<ViewEvent> {
             backgroundColor: Colors.white,
             leading: BackButton(
               color: Colors.black,
-                onPressed: () => Navigator.pop(
-                    context, event)), //return to event list with event
+               //when pressedreturn to event list with event
+              onPressed: () => Navigator.pop(context, event)
+            ),
             actions: <Widget>[
-              //edit event button
+            //edit event button
               IconButton(
                   icon: Icon(Icons.settings, color: Colors.black,),
                   onPressed: () {
@@ -56,7 +58,7 @@ class _ViewEventState extends State<ViewEvent> {
                         EdgeInsets.symmetric(vertical: 25.0, horizontal: 25.0),
                     child: Column(
                       children: [
-                        //Trip name
+                        //Event name
                         Container(
                             child: Text(event.name,
                                 style: TextStyle(
@@ -84,10 +86,9 @@ class _ViewEventState extends State<ViewEvent> {
                                 child: Text('View on Map'),
                                 color: Colors.white,
                                 onPressed: () {
-                                  Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) {
-                                    return ShowLocation(
-                                        address: event.location);
+                                  //navigate to show_location page
+                                  Navigator.push(context,MaterialPageRoute(builder: (context) {
+                                    return ShowLocation(address: event.location);
                                   }));
                                 })
                           ],

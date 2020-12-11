@@ -3,6 +3,8 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 import 'package:geocoding/geocoding.dart' as gc;
 
+// Page for user to select a trip/event's location and then be shown the location on the map
+
 class SelectLocation extends StatefulWidget {
   SelectLocation({Key key}) : super(key: key);
 
@@ -33,16 +35,12 @@ class _SelectLocationState extends State<SelectLocation> {
         )
       ),
       body: Column(children: [
-      //  Row( 
-        //  children: [
-        //    Icon(Icons.location_on_outlined, color: Colors.black),
+        //Search bar for locations
             TextField(
               onSubmitted: (text) async {
                 await searchForLocation(text);
               }
             ),
-        //  ]
-        //),
         Container(
             child: FlutterMap(
           options: MapOptions(
@@ -55,16 +53,16 @@ class _SelectLocationState extends State<SelectLocation> {
               urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
               subdomains: ['a', 'b', 'c'],
             ),
-            //MarkerLayerOptions(markers: []),
           ],
         ),
           height: 0.8 * MediaQuery.of(context).size.height,
-
         )
       ]),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          //if a location has been found
           if (userSearch != null){
+            //return to previous page (an add or edit page for a trip/event)
             Navigator.of(context).pop([userSearch, point]);
           }
         },
@@ -75,16 +73,20 @@ class _SelectLocationState extends State<SelectLocation> {
   }
 
   Future <void> searchForLocation(String search) async {
+    //if a location has been searched
       if (search != null){
-      List<gc.Location> p = await gc.locationFromAddress(search);
-      if (p.isNotEmpty) {
-        userSearch = search;
-        setState(() {
-          point.latitude = p[0].latitude;
-          point.longitude = p[0].longitude;
-          _mapController.move(point, 10);
-        });
+        //get location
+        List<gc.Location> p = await gc.locationFromAddress(search);
+        if (p.isNotEmpty) {
+          //location found, move map to location
+          userSearch = search;
+          setState(() {
+            point.latitude = p[0].latitude;
+            point.longitude = p[0].longitude;
+            _mapController.move(point, 10);
+          });
       } else {
+        //no place found, show dialog
         await showDialog<void>(
                   context: context,
                   barrierDismissible: false,

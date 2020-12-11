@@ -25,7 +25,7 @@ class TripModel{
     );
   }
 
-    //Update Event
+    //Update Trip
   Future<void> updateTrip(Trip trip) async {
     final db = await DBUtils().init();
     await db.update(
@@ -36,7 +36,7 @@ class TripModel{
     );
   }
 
-  //Delete Event
+  //Delete Trip
   Future<void> deleteTrip(int id) async {
     final db = await DBUtils().init();
     await db.delete(

@@ -3,12 +3,12 @@ import 'add_event.dart';
 import 'view_event.dart';
 import 'trip_components/day.dart';
 import 'trip_components/event.dart';
-//import 'local_storage/event_model/event_model.dart';
 import 'event_notifications.dart';
 import 'trip_components/delete_components.dart';
 import 'package:timezone/timezone.dart' as tz;
 import 'package:timezone/data/latest.dart' as tz;
-import 'package:geocoding/geocoding.dart' as gc;
+
+//Page to list the events of a day
 
 class EventList extends StatefulWidget {
   EventList({Key key, this.title, this.day}) : super(key: key);
@@ -21,8 +21,6 @@ class EventList extends StatefulWidget {
 
 class _EventListState extends State<EventList> {
   int eventNum = 0;
-  //int _lastInsertedId = 0;
-  //EventModel _model = new EventModel();
   final _notifications = new EventNotifications();
   Day eventsDay;
   
@@ -34,7 +32,6 @@ class _EventListState extends State<EventList> {
     super.initState();
   }
 
-  //temporary UI
   @override
   Widget build(BuildContext context) {
     _notifications.init();
@@ -62,9 +59,9 @@ class _EventListState extends State<EventList> {
                _showEventView(eventsDay.events[index], index);
               },
               child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 10.0),
-                      child: buildEvent(context, eventsDay.events[index]) 
-                      )
+                padding: EdgeInsets.symmetric(vertical: 10.0),
+                child: buildEvent(context, eventsDay.events[index]) 
+              )
             );
           },
         ),
@@ -125,8 +122,7 @@ class _EventListState extends State<EventList> {
   }
 
   Future<int> _addEventNotification(Event e, DateTime date) async {
-    // gc.Location l = new gc.Location(latitude: e.lat, longitude: e.lng);
-    tz.setLocalLocation(tz.getLocation('America/Detroit')); //hardcode local location until geocoding implemented
+    tz.setLocalLocation(tz.getLocation('America/Detroit'));
     var when = tz.TZDateTime(tz.local, date.year, date.month, date.day, e.startTime.hour, e.startTime.minute - e.notificationTime);
     var n = await _notifications.sendNotificationLater(e.name, e.description, when, null);
     return n;
@@ -146,17 +142,15 @@ class _EventListState extends State<EventList> {
     Widget buildEvent(BuildContext context, Event e) {
     return Container (
       decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(
-                Radius.circular(20),),
-        //border: Border.all(color: Colors.black),
+          borderRadius: BorderRadius.all(
+          Radius.circular(20),),
         color: Colors.blue.withOpacity(0.1)
         ),
       padding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 25.0),
       child: Column(
       children: [
         //Trip name
-        Container(
-            child: Text(e.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25))),
+        Container(child: Text(e.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25))),
         //Location
         Container(
             child: Text(

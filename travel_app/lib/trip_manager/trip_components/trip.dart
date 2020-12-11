@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 import 'delete_components.dart';
 
 class Trip {
-  //add user id when accounts implemented
   List<Day> days = [];
   String name, description;
   String location; //change to list later for multiple locations? 
@@ -38,8 +37,12 @@ class Trip {
   }
 
   void shortenTrip(){
+    //dates of trip have been changed and the trip is now shorter
+
+    //store old list of days and init new one
     List<Day> oldDays = this.days;
     this.initDays();
+    //transfer events from days in trip that won't be deleted
     for (int i = 0; i < this.days.length; i++){
       this.days[i].events = oldDays[i].events;
       this.days[i].id = oldDays[i].id;
@@ -51,9 +54,11 @@ class Trip {
   }
 
   void lengthenTrip(){
+    //dates of trip have been changed and the trip is now longer
     List<Day> oldDays = this.days;
     this.initDays();
     for (int i = 0; i < oldDays.length; i++){
+      //transfer events from old days to new days
       this.days[i].events = oldDays[i].events;
       this.days[i].id = oldDays[i].id;
     }    

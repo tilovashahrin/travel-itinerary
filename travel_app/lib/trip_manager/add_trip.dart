@@ -5,6 +5,8 @@ import 'utils.dart';
 import 'package:date_range_picker/date_range_picker.dart' as DateRangePicker;
 import 'maps/select_location.dart';
 
+//Page for User to create a trip
+
 class AddTrip extends StatefulWidget {
   AddTrip({Key key, this.title, this.tripList}) : super(key: key);
   final TripList tripList;
@@ -35,12 +37,14 @@ class _AddTripState extends State<AddTrip> {
           backgroundColor: Colors.white,
           title: Text(
             "Create Trip",
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
-            leading: BackButton(
-              color: Colors.black,
-              onPressed: () {
-                  Navigator.pop(context);
-              })
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)
+          ),
+          leading: BackButton(
+            color: Colors.black,
+            onPressed: () {
+                Navigator.pop(context);
+            }
+          )
         ),
 
         body: SingleChildScrollView(
@@ -90,12 +94,13 @@ class _AddTripState extends State<AddTrip> {
                 ],
               ),
 
-              //Description
+            //Description
               Container(
                 padding: EdgeInsets.symmetric(vertical: 10.0),
-                child: Text("Description",
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                child: Text(
+                  "Description",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
+                ),
               ),
               Container(
                 padding: EdgeInsets.only(bottom: 10),
@@ -105,7 +110,7 @@ class _AddTripState extends State<AddTrip> {
                 }),
               ),
 
-            //Date Selection
+          //Date Selection
             //Start Date
               Container(
                 child: Text(
@@ -151,7 +156,8 @@ class _AddTripState extends State<AddTrip> {
 
                       //check if dates conflict with other trips
                       if (_tripList.timeSlotAvailable(entry)) {
-                        Navigator.of(context).pop(entry); //return new trip
+                        //no conflicts, return to view_trip_list page with trip
+                        Navigator.of(context).pop(entry);
                       } else {
                         //conflict, show dialogue
                         showDialog<void>(
@@ -207,11 +213,10 @@ class _AddTripState extends State<AddTrip> {
   }
 
   Future<void> getLocation() async {
-    var loc =
-        await Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return SelectLocation();
-    }));
+    //get location of trip from select_location page
+    var loc = await Navigator.push(context, MaterialPageRoute(builder: (context) {return SelectLocation();}));
     if (loc != null) {
+      //if a location was returned, set the trip's location
       setState(() {
         location = loc[0];
       });

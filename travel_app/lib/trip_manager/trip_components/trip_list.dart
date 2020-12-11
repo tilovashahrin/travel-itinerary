@@ -2,7 +2,6 @@ import 'trip.dart';
 
 //class to store list of user's trips
 class TripList{
-  //add user id when accounts implemented
   List<Trip> trips;
 
   TripList({this.trips});

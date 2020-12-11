@@ -5,6 +5,8 @@ import 'trip_components/event.dart';
 import 'maps/select_location.dart';
 import 'package:latlong/latlong.dart';
 
+//Page for user to create an event
+
 class AddEvent extends StatefulWidget {
   AddEvent({Key key, this.title, this.day}) : super(key: key);
   final Day day;
@@ -29,12 +31,15 @@ class _AddEventState extends State<AddEvent> {
         backgroundColor: Colors.white,
         title: Text(
           "Add Event",
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)
+        ),
         leading: BackButton(
           color: Colors.black,
             onPressed: () {
+              //return to list_events page
               Navigator.pop(context);
-            })
+            }
+          )
       ),
       
       body:
@@ -48,20 +53,20 @@ class _AddEventState extends State<AddEvent> {
             //Name of Event
               Container(
                 child: Text(
-                    "Event Name ",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-              ),
-                Container(
-                  padding: EdgeInsets.only(bottom: 10),
-                  width: 0.8 * MediaQuery.of(context).size.width,
-                  child: TextField(
-                    //store text when textfield is edited
-                    onChanged: (text) {
-                      name = text;
-                    }
+                  "Event Name ",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
+              ),
+              Container(
+                padding: EdgeInsets.only(bottom: 10),
+                width: 0.8 * MediaQuery.of(context).size.width,
+                child: TextField(
+                  //store text when textfield is edited
+                  onChanged: (text) {
+                    name = text;
+                  }
                 ),
+              ),
 
             //Location
               Container(
@@ -87,7 +92,7 @@ class _AddEventState extends State<AddEvent> {
                 ],
               ),
 
-              //Description
+            //Description
               Container(
                 padding: EdgeInsets.symmetric(vertical: 10.0),
                 child: Text("Description",
@@ -107,14 +112,16 @@ class _AddEventState extends State<AddEvent> {
             Container(
                 child: Text(
                   "Start Time:    " + startTimeString,
-                  style:TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  style:TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
+                ),
               ),
             //End Date
               Container(
                 padding: EdgeInsets.symmetric(vertical: 10.0),
                 child: Text(
-                    "End Time:    " + endTimeString,
-                    style:TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  "End Time:    " + endTimeString,
+                  style:TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
+                ),
               ),
 
             //Select Dates button
@@ -173,13 +180,13 @@ class _AddEventState extends State<AddEvent> {
               }
             }
             else {
-          //show snackbar if some fields incomplete
-            var snackbar = SnackBar(content: Text('Fill out all fields.'));
-            Scaffold.of(context).showSnackBar(snackbar);
+            //show snackbar if some fields incomplete
+              var snackbar = SnackBar(content: Text('Fill out all fields.'));
+              Scaffold.of(context).showSnackBar(snackbar);
             }         
           },
           child: Icon(Icons.save, color: Colors.black),
-                  backgroundColor: Colors.white,
+          backgroundColor: Colors.white,
         )
       )
     );

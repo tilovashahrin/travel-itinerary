@@ -3,6 +3,7 @@ import 'event.dart';
 import 'package:travel_app/trip_manager/utils.dart';
 
 //Class for each day of a trip
+
 class Day {
   DateTime date;
   List<Event> events;

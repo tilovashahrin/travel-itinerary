@@ -5,6 +5,8 @@ import 'utils.dart';
 import 'package:date_range_picker/date_range_picker.dart' as DateRangePicker;
 import 'maps/select_location.dart';
 
+//Page to edit an existing trip
+
 class EditTrip extends StatefulWidget {
   EditTrip({Key key, this.title, this.tripList, this.trip}) : super(key: key);
   final TripList tripList;
@@ -41,6 +43,7 @@ class _EditTripState extends State<EditTrip> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+
         appBar: AppBar(
             backgroundColor: Colors.white,
             title: Text(
@@ -51,6 +54,7 @@ class _EditTripState extends State<EditTrip> {
               color: Colors.black,
               onPressed: () => Navigator.pop(context, null)
             ),
+
             actions: <Widget>[
               //delete event button
               IconButton(
@@ -79,7 +83,9 @@ class _EditTripState extends State<EditTrip> {
                             //cancel delete
                             FlatButton(
                               child: Text('Cancel'),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pop(context, null);
+                              },
                             )
                           ],
                         );
@@ -87,92 +93,95 @@ class _EditTripState extends State<EditTrip> {
                     );
                   }),
             ]),
+
         body: SingleChildScrollView(
           child: Container(
             padding: EdgeInsets.all(15),
             child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-//Name of Trip
-              Container(
-                child: Text(
-                  "Trip Name ",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-              ),
-              Container(
-                padding: EdgeInsets.only(bottom: 10),
-                width: 0.8 * MediaQuery.of(context).size.width,
-                child: TextField(
-                  controller: _nameController,
-                  //store text when textfield is edited
-                  onChanged: (text) {
-                  name = text;
-                }),
-              ),
-
-            //Location
-              Container(
-                child: Text(
-                  "Location",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start, 
                 children: [
-                  Text(
-                    location,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
+              //Name of Trip
+                Container(
+                  child: Text(
+                    "Trip Name ",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                ),
+                Container(
+                  padding: EdgeInsets.only(bottom: 10),
+                  width: 0.8 * MediaQuery.of(context).size.width,
+                  child: TextField(
+                    controller: _nameController,
+                    //store text when textfield is edited
+                    onChanged: (text) {
+                    name = text;
+                  }),
+                ),
+
+              //Location
+                Container(
+                  child: Text(
+                    "Location",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  RaisedButton(
-                    child: Text('Select'),
-                    color: Colors.white,
-                    onPressed: () {
-                      getLocation();
-                    }
-                  )
-                ],
-              ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      location,
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
+                    ),
+                    RaisedButton(
+                      child: Text('Select'),
+                      color: Colors.white,
+                      onPressed: () {
+                        getLocation();
+                      }
+                    )
+                  ],
+                ),
 
               //Description
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 10.0),
-                child: Text("Description",
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              ),
-              Container(
-                padding: EdgeInsets.only(bottom: 10),
-                width: 0.8 * MediaQuery.of(context).size.width,
-                child: TextField(
-                  controller: _descriptionController,
-                  onChanged: (text) {
-                  description = text;
-                }),
-              ),
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                  child: Text("Description",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                ),
+                Container(
+                  padding: EdgeInsets.only(bottom: 10),
+                  width: 0.8 * MediaQuery.of(context).size.width,
+                  child: TextField(
+                    controller: _descriptionController,
+                    onChanged: (text) {
+                    description = text;
+                  }),
+                ),
 
-            //Date Selection
-            //Start Date
-              Container(
-                child: Text(
-                  "Start Date:    " + startDateString,
-                  style:TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              ),
-            //End Date
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 10.0),
-                child: Text(
-                    "End Date:    " + endDateString,
+              //Date Selection
+              //Start Date
+                Container(
+                  child: Text(
+                    "Start Date:    " + startDateString,
                     style:TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-              ),
+                ),
+              //End Date
+                Container(
+                  padding: EdgeInsets.symmetric(vertical: 10.0),
+                  child: Text(
+                      "End Date:    " + endDateString,
+                      style:TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                ),
 
-            //Select Dates button
-              RaisedButton(
-                  color: Colors.white,
-                  child: Text('Select Dates'),
-                  onPressed: () {
-                    _getDates();
-                  })
+              //Select Dates button
+                RaisedButton(
+                    color: Colors.white,
+                    child: Text('Select Dates'),
+                    onPressed: () {
+                      _getDates();
+                    })
             ]),
           ),
         ),
@@ -262,6 +271,7 @@ class _EditTripState extends State<EditTrip> {
     }
   }
 
+  //function to get the trip's new list of days
   Future<Trip> reInitDays(Trip t, BuildContext context) async {
     int oldDayNum = t.days.length;
     //create new trip to get new number of days without overwriting old days
@@ -308,10 +318,7 @@ class _EditTripState extends State<EditTrip> {
   }
 
     Future<void> getLocation() async {
-    var loc =
-        await Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return SelectLocation();
-    }));
+    var loc = await Navigator.push(context, MaterialPageRoute(builder: (context) {return SelectLocation();}));
     if (loc != null) {
       setState(() {
         location = loc[0];

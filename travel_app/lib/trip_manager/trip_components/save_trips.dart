@@ -5,7 +5,8 @@ import 'package:travel_app/trip_manager/trip_components/event.dart';
 import 'package:travel_app/trip_manager/local_storage/trip_model/trip_model.dart';
 import 'package:travel_app/trip_manager/local_storage/day_model/day_model.dart';
 import 'package:travel_app/trip_manager/local_storage/event_model/event_model.dart';
-import 'package:travel_app/trip_manager/event_notifications.dart';
+
+// Function to save all trips and their components (days and events) into local storage
 
 Future<void> saveTrips(TripList tripList) async {
   TripModel tripModel = new TripModel();
