@@ -42,9 +42,12 @@ class _EventListState extends State<EventList> {
     
     return Scaffold(
       appBar: AppBar(
-        //add date to title
-        title: Text("Schedule"),
-        leading: BackButton(onPressed: () => Navigator.pop(context, eventsDay.events),)  //return with current events
+        backgroundColor: Colors.white,
+        title: Text(
+          eventsDay.dayString,
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)
+        ),
+        leading: BackButton(onPressed: () => Navigator.pop(context, eventsDay.events), color: Colors.black,)  //return with current events
         ),
       body: Align(
         alignment: Alignment.topLeft,
@@ -54,17 +57,14 @@ class _EventListState extends State<EventList> {
           itemCount: eventNum,
           itemBuilder: (BuildContext context, int index) {
           //Event
-            //temporary widget, change to custom later w/time displayed + event selection
             return GestureDetector(
               onTap: () {
                _showEventView(eventsDay.events[index], index);
               },
-              child: Container (
-                  child: ListTile(
-                  title: Text(eventsDay.events[index].name + " " +eventsDay.events[index].location),
-                  subtitle: Text(eventsDay.events[index].startTime.format(context) + " to " + eventsDay.events[index].endTime.format(context)),
-                  )
-            )
+              child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 10.0),
+                      child: buildEvent(context, eventsDay.events[index]) 
+                      )
             );
           },
         ),
@@ -75,8 +75,8 @@ class _EventListState extends State<EventList> {
         onPressed: () {
           _addEvent();
         },
-        child: Icon(Icons.add),
-        backgroundColor: Colors.blue,
+        child: Icon(Icons.add, color: Colors.black,),
+        backgroundColor: Colors.white,
       )
     );
   }
@@ -125,7 +125,7 @@ class _EventListState extends State<EventList> {
   }
 
   Future<int> _addEventNotification(Event e, DateTime date) async {
-    gc.Location l = new gc.Location(latitude: e.lat, longitude: e.lng);
+    // gc.Location l = new gc.Location(latitude: e.lat, longitude: e.lng);
     tz.setLocalLocation(tz.getLocation('America/Detroit')); //hardcode local location until geocoding implemented
     var when = tz.TZDateTime(tz.local, date.year, date.month, date.day, e.startTime.hour, e.startTime.minute - e.notificationTime);
     var n = await _notifications.sendNotificationLater(e.name, e.description, when, null);
@@ -141,6 +141,47 @@ class _EventListState extends State<EventList> {
         eventsDay.events.remove(event);
         eventNum = eventsDay.events.length;
     });
+  }
+
+    Widget buildEvent(BuildContext context, Event e) {
+    return Container (
+      decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(
+                Radius.circular(20),),
+        //border: Border.all(color: Colors.black),
+        color: Colors.blue.withOpacity(0.1)
+        ),
+      padding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 25.0),
+      child: Column(
+      children: [
+        //Trip name
+        Container(
+            child: Text(e.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25))),
+        //Location
+        Container(
+            child: Text(
+              e.location,
+              textAlign: TextAlign.left,
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,)
+              ),
+              alignment: Alignment.topLeft),
+        Container(
+            child: Text(
+              e.startTime.format(context) + " to " + e.endTime.format(context),
+              textAlign: TextAlign.left,
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold,)
+            ),
+            alignment: Alignment.topLeft),
+        Container(
+            child: Text(
+              e.description,
+              textAlign: TextAlign.left,
+              style: TextStyle(fontSize: 14)
+            ),
+            alignment: Alignment.topLeft),
+      ],
+    )
+    );
   }
 
 }

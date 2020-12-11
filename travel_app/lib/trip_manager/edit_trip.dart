@@ -3,6 +3,7 @@ import 'trip_components/trip.dart';
 import 'trip_components/trip_list.dart';
 import 'utils.dart';
 import 'package:date_range_picker/date_range_picker.dart' as DateRangePicker;
+import 'maps/select_location.dart';
 
 class EditTrip extends StatefulWidget {
   EditTrip({Key key, this.title, this.tripList, this.trip}) : super(key: key);
@@ -15,9 +16,7 @@ class EditTrip extends StatefulWidget {
 }
 
 class _EditTripState extends State<EditTrip> {
-  TextEditingController _nameController,
-      _locationController,
-      _descriptionController;
+  TextEditingController _nameController, _descriptionController;
   String name, location, description;
   String startDateString;
   String endDateString;
@@ -36,7 +35,6 @@ class _EditTripState extends State<EditTrip> {
     startDateString = toDateString(startDate) + " ${startDate.year}";
     endDateString = toDateString(endDate) + " ${endDate.year}";
     _nameController = new TextEditingController(text: name);
-    _locationController = new TextEditingController(text: location);
     _descriptionController = new TextEditingController(text: description);
     super.initState();
   }
@@ -44,12 +42,19 @@ class _EditTripState extends State<EditTrip> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: Text("Edit Trip"),
-            leading: BackButton(onPressed: () => Navigator.pop(context, null)),
+            backgroundColor: Colors.white,
+            title: Text(
+              "Edit Trip",
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)
+              ),
+            leading: BackButton(
+              color: Colors.black,
+              onPressed: () => Navigator.pop(context, null)
+            ),
             actions: <Widget>[
               //delete event button
               IconButton(
-                  icon: Icon(Icons.delete),
+                  icon: Icon(Icons.delete, color: Colors.black,),
                   onPressed: () {
                     //show dialogue asking user to confirm deletion
                     showDialog<void>(
@@ -87,78 +92,92 @@ class _EditTripState extends State<EditTrip> {
             padding: EdgeInsets.all(15),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              //Name of Event
+//Name of Trip
               Container(
-                child: Text("Trip Name: ",
-                    textScaleFactor: 1, textAlign: TextAlign.left),
+                child: Text(
+                  "Trip Name ",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
               ),
               Container(
                 padding: EdgeInsets.only(bottom: 10),
                 width: 0.8 * MediaQuery.of(context).size.width,
                 child: TextField(
-                    controller: _nameController,
-                    //store text when textfield is edited
-                    onChanged: (text) {
-                      name = text;
-                    }),
-              ),
-              //Location
-              Container(
-                child: Text("Location: ",
-                    textScaleFactor: 1, textAlign: TextAlign.left),
-              ),
-              Container(
-                padding: EdgeInsets.only(bottom: 10),
-                width: 0.8 * MediaQuery.of(context).size.width,
-                child: TextField(
-                    controller: _locationController,
-                    onChanged: (text) {
-                      location = text;
-                    }),
-              ),
-              //Description
-              Container(
-                child: Text("Description: ",
-                    textScaleFactor: 1, textAlign: TextAlign.left),
-              ),
-              Container(
-                padding: EdgeInsets.only(bottom: 10),
-                width: 0.8 * MediaQuery.of(context).size.width,
-                child: TextField(
-                    controller: _descriptionController,
-                    onChanged: (text) {
-                      description = text;
-                    }),
+                  controller: _nameController,
+                  //store text when textfield is edited
+                  onChanged: (text) {
+                  name = text;
+                }),
               ),
 
-              //Date Selection
-              //Start Date
+            //Location
               Container(
-                child: Text("Start Date: ",
-                    textScaleFactor: 1, textAlign: TextAlign.left),
+                child: Text(
+                  "Location",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  //display current selected date
-                  Text(startDateString,
-                      textScaleFactor: 1, textAlign: TextAlign.left),
+                  Text(
+                    location,
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
+                  ),
                   RaisedButton(
-                      child: Text('Select'),
-                      onPressed: () {
-                        _getDates();
-                      })
+                    child: Text('Select'),
+                    color: Colors.white,
+                    onPressed: () {
+                      getLocation();
+                    }
+                  )
                 ],
               ),
-              //End Time
+
+              //Description
               Container(
-                child: Text("End Date: " + endDateString,
-                    textScaleFactor: 1, textAlign: TextAlign.left),
+                padding: EdgeInsets.symmetric(vertical: 10.0),
+                child: Text("Description",
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               ),
+              Container(
+                padding: EdgeInsets.only(bottom: 10),
+                width: 0.8 * MediaQuery.of(context).size.width,
+                child: TextField(
+                  controller: _descriptionController,
+                  onChanged: (text) {
+                  description = text;
+                }),
+              ),
+
+            //Date Selection
+            //Start Date
+              Container(
+                child: Text(
+                  "Start Date:    " + startDateString,
+                  style:TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              ),
+            //End Date
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 10.0),
+                child: Text(
+                    "End Date:    " + endDateString,
+                    style:TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              ),
+
+            //Select Dates button
+              RaisedButton(
+                  color: Colors.white,
+                  child: Text('Select Dates'),
+                  onPressed: () {
+                    _getDates();
+                  })
             ]),
           ),
         ),
-        //Save button
+
+      //Save button
         floatingActionButton: Builder(
             builder: (context) => FloatingActionButton(
                   onPressed: () async {
@@ -217,8 +236,8 @@ class _EditTripState extends State<EditTrip> {
                       Scaffold.of(context).showSnackBar(snackbar);
                     }
                   },
-                  child: Icon(Icons.save),
-                  backgroundColor: Colors.blue,
+                  child: Icon(Icons.save, color: Colors.black),
+                  backgroundColor: Colors.white,
                 )));
   }
 
@@ -286,5 +305,17 @@ class _EditTripState extends State<EditTrip> {
       return t;
     }
     return null;
+  }
+
+    Future<void> getLocation() async {
+    var loc =
+        await Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return SelectLocation();
+    }));
+    if (loc != null) {
+      setState(() {
+        location = loc[0];
+      });
+    }
   }
 }

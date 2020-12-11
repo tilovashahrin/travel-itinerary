@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:time_range_picker/time_range_picker.dart';
 import 'trip_components/day.dart';
 import 'trip_components/event.dart';
+import 'maps/select_location.dart';
+import 'package:latlong/latlong.dart';
 
 class EditEvent extends StatefulWidget {
   EditEvent({Key key, this.title, this.event, this.day}) : super(key: key);
@@ -14,10 +16,11 @@ class EditEvent extends StatefulWidget {
 }
 
 class _EditEventState extends State<EditEvent> {
-  TextEditingController _nameController, _locationController, _descriptionController;
+  TextEditingController _nameController, _descriptionController;
   String _name, _location, _description;
   TimeOfDay _startTime, _endTime;
   Event _updatedEvent;
+  LatLng locCoords;
 
   @override
 
@@ -30,27 +33,26 @@ class _EditEventState extends State<EditEvent> {
     _startTime = _updatedEvent.startTime;
     _endTime = _updatedEvent.endTime;
     _nameController = new TextEditingController(text: _name);
-    _locationController = new TextEditingController(text: _location);
     _descriptionController = new TextEditingController(text: _description);
   }
 
   Widget build(BuildContext context) {
-    // final Event _ogEvent = widget.event;
-    // print(_ogEvent.startTime.format(context));
-    // print(_ogEvent.endTime.format(context));
-    // print(_ogEvent.location);
-    // print(_ogEvent.name);
-    // print(_ogEvent.description);
-
 
     return Scaffold(
       appBar: AppBar(
-      title: Text("Edit Event"),
-      leading: BackButton(onPressed: () => Navigator.pop(context, null)),
+      backgroundColor: Colors.white,
+      title: Text(
+        "Edit Event",
+        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+      ),
+      leading: BackButton(
+        color: Colors.black,
+        onPressed: () => Navigator.pop(context, null)
+      ),
       actions: <Widget> [
       //delete event button
         IconButton(
-          icon: Icon(Icons.delete),
+          icon: Icon(Icons.delete, color: Colors.black,),
           onPressed: () {
           //show dialogue asking user to confirm deletion
             showDialog<void>(
@@ -92,11 +94,13 @@ class _EditEventState extends State<EditEvent> {
             Column(
             crossAxisAlignment: CrossAxisAlignment.start, 
             children: [
-            //Name of Event
+//Name of Event
               Container(
-                child:
-                  Text("Event Name: ", textScaleFactor: 1, textAlign: TextAlign.left),
-                ),
+                child: Text(
+                    "Event Name ",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+              ),
                 Container(
                   padding: EdgeInsets.only(bottom: 10),
                   width: 0.8 * MediaQuery.of(context).size.width,
@@ -108,60 +112,70 @@ class _EditEventState extends State<EditEvent> {
                     }
                   ),
                 ),
+
             //Location
               Container(
-                child:
-                  Text("Location: ", textScaleFactor: 1, textAlign: TextAlign.left),
+                child: Text(
+                  "Location",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                Container(
-                  padding: EdgeInsets.only(bottom: 10),
-                  width: 0.8 * MediaQuery.of(context).size.width,
-                  child: TextField(
-                    controller: _locationController,
-                    onChanged: (text) {
-                      _location = text;
-                    }
-                  ),
-                ),
-            //Description
-              Container(
-                child:
-                  Text("Description: ", textScaleFactor: 1, textAlign: TextAlign.left),
-                ),
-                Container(
-                  padding: EdgeInsets.only(bottom: 10),
-                  width: 0.8 * MediaQuery.of(context).size.width,
-                  child: TextField(
-                    controller: _descriptionController,
-                    onChanged: (text) {
-                      _description = text;
-                    }
-                  ),
-                ),
-
-          //Date Selection
-            //Start Date
-            Container(
-                  child: Text("Start Time: ",
-                    textScaleFactor: 1, textAlign: TextAlign.left),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  //display current selected date
-                  Text(_startTime.format(context), textScaleFactor: 1, textAlign: TextAlign.left),
+                  Text(
+                    _location,
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
+                  ),
                   RaisedButton(
-                      child: Text('Select'),
-                      onPressed: () {
-                        _getTimes();
-                      })
+                    child: Text('Select'),
+                    color: Colors.white,
+                    onPressed: () {
+                      getLocation();
+                    }
+                  )
                 ],
               ),
-            //End Time
-            Container(
-                  child: Text("End Time: " + _endTime.format(context),
-                    textScaleFactor: 1, textAlign: TextAlign.left),
+
+              //Description
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 10.0),
+                child: Text("Description",
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               ),
+              Container(
+                padding: EdgeInsets.only(bottom: 10),
+                width: 0.8 * MediaQuery.of(context).size.width,
+                child: TextField(
+                  controller: _descriptionController,
+                  onChanged: (text) {
+                  _description = text;
+                }),
+              ),
+
+          //Time Selection
+            //Start Time
+            Container(
+                child: Text(
+                  "Start Time:    " + _startTime.format(context),
+                  style:TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              ),
+            //End Date
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 10.0),
+                child: Text(
+                    "End Time:    " + _endTime.format(context),
+                    style:TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              ),
+
+            //Select Dates button
+              RaisedButton(
+                  color: Colors.white,
+                  child: Text('Select Times'),
+                  onPressed: () {
+                    _getTimes();
+                  })
             ]),
       ),
         ),
@@ -212,8 +226,8 @@ class _EditEventState extends State<EditEvent> {
             Scaffold.of(context).showSnackBar(snackbar);
             }         
           },
-          child: Icon(Icons.save),
-          backgroundColor: Colors.blue,
+          child: Icon(Icons.save, color: Colors.black,),
+          backgroundColor: Colors.white,
         )
       )
     );
@@ -232,6 +246,16 @@ class _EditEventState extends State<EditEvent> {
       _startTime = range.startTime;
       _endTime = range.endTime;
     });
+  }
+
+  Future<void> getLocation() async {
+    var loc = await Navigator.push(context, MaterialPageRoute(builder: (context) {return SelectLocation();}));
+    if (loc != null){
+      setState(() {
+        _location = loc[0];
+        locCoords = loc[1];
+      });
+    }
   }
 
 }

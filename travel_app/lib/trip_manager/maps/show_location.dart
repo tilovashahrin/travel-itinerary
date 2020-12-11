@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart' as gc;
 
 class ShowLocation extends StatefulWidget {
@@ -14,10 +13,9 @@ class ShowLocation extends StatefulWidget {
 }
 
 class _ShowLocationState extends State<ShowLocation> {
-  Geolocator _geolocator;
   String _address;
   MapController _mapController;
-  LatLng point;
+  LatLng eventLoc;
   Marker pointMark;
 
   @override
@@ -25,7 +23,7 @@ void initState() {
       super.initState();
       _mapController = MapController();
       _address = this.widget.address;
-      setMarker(_address);
+      setPoint(_address);
     }
 
 
@@ -33,13 +31,17 @@ void initState() {
 
     return Scaffold(
       appBar: AppBar(
-        //title: Text(widget.title),
-        backgroundColor: Colors.transparent,
+        title: Text(_address, style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
+        backgroundColor: Colors.white,
+        leading: BackButton(
+          color: Colors.black,
+          onPressed: () => Navigator.pop(context)
+        )
       ),
       body:FlutterMap(
       options: MapOptions(
-        zoom: 2,
-        center: point,
+        zoom: 15,
+        center: eventLoc,
       ),
       mapController: _mapController,
       layers: [
@@ -47,17 +49,18 @@ void initState() {
           urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
           subdomains: ['a', 'b', 'c'],
         ),
-        MarkerLayerOptions(markers: [pointMark]),
+        //MarkerLayerOptions(markers: [new Marker() = pointMark]),
         
       ],
     )
     );
   }
 
-  Future<void> setMarker(String loc) async {
+  Future<void> setPoint(String loc) async {
     List<gc.Location> p = await gc.locationFromAddress(loc);
     if (p.isNotEmpty) {
-      pointMark = new Marker(point: new LatLng(p[0].latitude, p[0].longitude));
+      eventLoc = new LatLng(p[0].latitude, p[0].longitude);
+      pointMark = new Marker(point: eventLoc);
     }
 }
 }

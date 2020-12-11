@@ -38,11 +38,17 @@ class _DayListState extends State<DayList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text(toDateString(_trip.startDate) + " - " + toDateString(_trip.endDate)),
-          leading: BackButton(onPressed: () => Navigator.pop(context, _trip),),
+        backgroundColor: Colors.white,
+        title: Text(
+              _trip.name,
+              style:
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+            ),
+          leading: BackButton(onPressed: () => Navigator.pop(context, _trip), color: Colors.black,),
           actions: <Widget> [
         //edit trip button
           IconButton(
+            color: Colors.black,
             icon: Icon(Icons.settings),
             onPressed: () {
               _editTrip();
@@ -50,15 +56,11 @@ class _DayListState extends State<DayList> {
           )
         ]
           ),
-      body: Align(
+      body:
+        Align(
         alignment: Alignment.topLeft,
         //List of days
         child:
-              //  ListTile(
-              //   title: Text(_trip.name + " " + _trip.location),
-              //   subtitle: Text(toDateString(_trip.startDate) + " - " + toDateString(_trip.endDate)),
-              //   ),
-
             ListView.builder(
             padding: const EdgeInsets.all(5),
             itemCount: _days.length,
@@ -69,10 +71,9 @@ class _DayListState extends State<DayList> {
                   _showEventList(_days[index], index);
                 },
                 child: Container(
-                    child: ListTile(
-                  title: Text(_days[index].dayString),
-                  subtitle: Text("Tap to View Events"), //change to event count
-                )),
+                      padding: EdgeInsets.symmetric(vertical: 10.0),
+                      child: buildDay(context, _days[index]) 
+                      )
               );
             },
           )
@@ -107,6 +108,40 @@ class _DayListState extends State<DayList> {
         });
       }
     }
+  }
+
+    Widget buildDay(BuildContext context, Day d) {
+    return Container (
+      decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(
+                Radius.circular(20),),
+        //border: Border.all(color: Colors.black),
+        color: Colors.blue.withOpacity(0.1)
+        ),
+      padding: EdgeInsets.symmetric(vertical: 25.0, horizontal: 25.0),
+      child: Column(
+      children: [
+        //Trip name
+        Container(
+            child: Text(d.dayString, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25))),
+        //Location
+        Container(
+            child: Text(
+              "Day ${d.dayNum}",
+              textAlign: TextAlign.left,
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold,)
+              ),
+              alignment: Alignment.topLeft),
+        Container(
+            child: Text(
+              "${d.events.length} Events Planned",
+              textAlign: TextAlign.left,
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,)
+            ),
+            alignment: Alignment.topLeft),
+      ],
+    )
+    );
   }
 
 }

@@ -3,14 +3,14 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 import 'package:geocoding/geocoding.dart' as gc;
 
-class ShowLocation extends StatefulWidget {
-  ShowLocation({Key key}) : super(key: key);
+class SelectLocation extends StatefulWidget {
+  SelectLocation({Key key}) : super(key: key);
 
   @override
-  _ShowLocationState createState() => _ShowLocationState();
+  _SelectLocationState createState() => _SelectLocationState();
 }
 
-class _ShowLocationState extends State<ShowLocation> {
+class _SelectLocationState extends State<SelectLocation> {
   MapController _mapController;
   LatLng point;
   String userSearch;
@@ -25,13 +25,24 @@ class _ShowLocationState extends State<ShowLocation> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //title: Text(widget.title),
-        backgroundColor: Colors.transparent,
+        title: Text("Enter Location", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
+        backgroundColor: Colors.white,
+        leading: BackButton(
+          color: Colors.black,
+          onPressed: () => Navigator.pop(context, null)
+        )
       ),
       body: Column(children: [
-        TextField(onSubmitted: (text) {
-          searchForLocation(text);
-        }),
+      //  Row( 
+        //  children: [
+        //    Icon(Icons.location_on_outlined, color: Colors.black),
+            TextField(
+              onSubmitted: (text) async {
+                await searchForLocation(text);
+              }
+            ),
+        //  ]
+        //),
         Container(
             child: FlutterMap(
           options: MapOptions(
@@ -44,7 +55,7 @@ class _ShowLocationState extends State<ShowLocation> {
               urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
               subdomains: ['a', 'b', 'c'],
             ),
-            MarkerLayerOptions(markers: []),
+            //MarkerLayerOptions(markers: []),
           ],
         ),
           height: 0.8 * MediaQuery.of(context).size.height,
@@ -53,14 +64,17 @@ class _ShowLocationState extends State<ShowLocation> {
       ]),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).pop([userSearch, point]);
+          if (userSearch != null){
+            Navigator.of(context).pop([userSearch, point]);
+          }
         },
-        child: Icon(Icons.save),
+        child: Icon(Icons.save, color: Colors.black,),
+        backgroundColor: Colors.white,
       ),
     );
   }
 
-  searchForLocation(String search) async {
+  Future <void> searchForLocation(String search) async {
       if (search != null){
       List<gc.Location> p = await gc.locationFromAddress(search);
       if (p.isNotEmpty) {
@@ -71,7 +85,25 @@ class _ShowLocationState extends State<ShowLocation> {
           _mapController.move(point, 10);
         });
       } else {
-        //DO SOMETHING to tell user search invalid
+        await showDialog<void>(
+                  context: context,
+                  barrierDismissible: false,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Invalid Location'),
+                      content: Text(
+                          'No location found, try another search.'),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text('Okay'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
       }
     }
   }

@@ -24,155 +24,166 @@ class _AddTripState extends State<AddTrip> {
 
   @override
   void initState() {
-    _tripList= widget.tripList;
+    _tripList = widget.tripList;
     super.initState();
   }
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-      title: Text("Create Trip"),
-      ),
-      body:
-        SingleChildScrollView(
+
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          title: Text(
+            "Create Trip",
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
+            leading: BackButton(
+              color: Colors.black,
+              onPressed: () {
+                  Navigator.pop(context);
+              })
+        ),
+
+        body: SingleChildScrollView(
           child: Container(
-          padding: EdgeInsets.all(15),
-          child:
-            Column(
-            crossAxisAlignment: CrossAxisAlignment.start, 
-            children: [
+            padding: EdgeInsets.all(15),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+
             //Name of Trip
               Container(
-                child:
-                  Text("Trip Name: ", textScaleFactor: 1, textAlign: TextAlign.left),
-                ),
-                Container(
-                  padding: EdgeInsets.only(bottom: 10),
-                  width: 0.8 * MediaQuery.of(context).size.width,
-                  child: TextField(
-                    //store text when textfield is edited
-                    onChanged: (text) {
-                      name = text;
-                    }
+                child: Text(
+                  "Trip Name ",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(bottom: 10),
+                width: 0.8 * MediaQuery.of(context).size.width,
+                child: TextField(
+                  //store text when textfield is edited
+                  onChanged: (text) {
+                  name = text;
+                }),
+              ),
+
             //Location
+              Container(
+                child: Text(
+                  "Location",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  //display current selected date
-                  Text("Location: " + location, textScaleFactor: 1, textAlign: TextAlign.left),
+                  Text(
+                    location,
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
+                  ),
                   RaisedButton(
-                      child: Text('Select'),
-                      onPressed: () {
-                        getLocation();
-                      })
+                    child: Text('Select'),
+                    color: Colors.white,
+                    onPressed: () {
+                      getLocation();
+                    }
+                  )
                 ],
               ),
-            //Description
+
+              //Description
               Container(
-                child:
-                  Text("Description: ", textScaleFactor: 1, textAlign: TextAlign.left),
-                ),
-                Container(
-                  padding: EdgeInsets.only(bottom: 10),
-                  width: 0.8 * MediaQuery.of(context).size.width,
-                  child: TextField(
-                    onChanged: (text) {
-                      description = text;
-                    }
-                  ),
-                ),
+                padding: EdgeInsets.symmetric(vertical: 10.0),
+                child: Text("Description",
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              ),
+              Container(
+                padding: EdgeInsets.only(bottom: 10),
+                width: 0.8 * MediaQuery.of(context).size.width,
+                child: TextField(onChanged: (text) {
+                  description = text;
+                }),
+              ),
 
             //Date Selection
             //Start Date
-            Container(
-                  child: Text("Start Date: ",
-                    textScaleFactor: 1, textAlign: TextAlign.left),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  //display current selected date
-                  Text(startDateString, textScaleFactor: 1, textAlign: TextAlign.left),
-                  RaisedButton(
-                      child: Text('Select'),
-                      onPressed: () {
-                        _getDates();
-                      })
-                ],
+              Container(
+                child: Text(
+                  "Start Date:    " + startDateString,
+                  style:TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               ),
             //End Date
-            Container(
-                  child: Text("End Date: ",
-                    textScaleFactor: 1, textAlign: TextAlign.left),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  //display current selected date
-                  Text(endDateString, textScaleFactor: 1, textAlign: TextAlign.left),
-                ],
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 10.0),
+                child: Text(
+                    "End Date:    " + endDateString,
+                    style:TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               ),
 
+            //Select Dates button
+              RaisedButton(
+                  color: Colors.white,
+                  child: Text('Select Dates'),
+                  onPressed: () {
+                    _getDates();
+                  })
             ]),
-      ),
+          ),
         ),
-      //Save button
+
+        //Save button
         floatingActionButton: Builder(
-        builder: (context) =>  FloatingActionButton(
-          onPressed: () {
-            //if all fields have been changed and dates have been selected
-            if (name != null && location != null &&  description!= null
-              && startDate != null && endDate != null) {
-              //create Trip instance
-              Trip entry = Trip(
-                  name: name,
-                  location: location,
-                  description: description,
-                  startDate: startDate,
-                  endDate: endDate
-                );
+            builder: (context) => FloatingActionButton(
+                  onPressed: () {
+                    //if all fields have been changed and dates have been selected
+                    if (name != null &&
+                        location != null &&
+                        description != null &&
+                        startDate != null &&
+                        endDate != null) {
+                      //create Trip instance
+                      Trip entry = Trip(
+                          name: name,
+                          location: location,
+                          description: description,
+                          startDate: startDate,
+                          endDate: endDate);
 
-              //check if dates conflict with other trips
-              if (_tripList.timeSlotAvailable(entry)) {
-                Navigator.of(context).pop(entry); //return new trip
-              }
-              else {
-                //conflict, show dialogue
-                showDialog<void>(
-                  context: context,
-                  barrierDismissible: false,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text('Time Conflict'),
-                      content: Text(
-                          'The dates of this trip conflict with another trip.'),
-                      actions: <Widget>[
-                        FlatButton(
-                          child: Text('Change Dates'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
+                      //check if dates conflict with other trips
+                      if (_tripList.timeSlotAvailable(entry)) {
+                        Navigator.of(context).pop(entry); //return new trip
+                      } else {
+                        //conflict, show dialogue
+                        showDialog<void>(
+                          context: context,
+                          barrierDismissible: false,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Time Conflict'),
+                              content: Text(
+                                  'The dates of this trip conflict with another trip.'),
+                              actions: <Widget>[
+                                FlatButton(
+                                  child: Text('Change Dates'),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
                           },
-                        ),
-                      ],
-                    );
+                        );
+                      }
+                    } else {
+                      //show snackbar if some fields incomplete
+                      var snackbar =
+                          SnackBar(content: Text('Fill out all fields.'));
+                      Scaffold.of(context).showSnackBar(snackbar);
+                    }
                   },
-                );
-              }
-
-            }
-            else {
-            //show snackbar if some fields incomplete
-            var snackbar = SnackBar(content: Text('Fill out all fields.'));
-            Scaffold.of(context).showSnackBar(snackbar);
-            }
-          },
-          child: Icon(Icons.save),
-          backgroundColor: Colors.blue,
-        )
-    )
-      );
+                  child: Icon(Icons.save, color: Colors.black),
+                  backgroundColor: Colors.white,
+                )));
   }
 
 //function to call date range picker and get dates from user
@@ -183,26 +194,27 @@ class _AddTripState extends State<AddTrip> {
       firstDate: DateTime.now(),
       lastDate: DateTime(2025),
       initialFirstDate: DateTime.now(),
-      initialLastDate: DateTime.now().add(new Duration(days:  7)),
+      initialLastDate: DateTime.now().add(new Duration(days: 7)),
     );
     if (dates != null && dates.length == 2) {
-        startDate = dates[0];
-        endDate = dates[1];
-        setState(() {
-          startDateString= toDateString(startDate) + " ${startDate.year}";
-          endDateString= toDateString(endDate) + " ${endDate.year}";
-        }
-      );
+      startDate = dates[0];
+      endDate = dates[1];
+      setState(() {
+        startDateString = toDateString(startDate) + " ${startDate.year}";
+        endDateString = toDateString(endDate) + " ${endDate.year}";
+      });
     }
   }
 
-   Future<void> getLocation() async {
-    var loc = await Navigator.push(context, MaterialPageRoute(builder: (context) {return ShowLocation();}));
-    if (loc != null){
+  Future<void> getLocation() async {
+    var loc =
+        await Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return SelectLocation();
+    }));
+    if (loc != null) {
       setState(() {
         location = loc[0];
       });
     }
   }
-
 }

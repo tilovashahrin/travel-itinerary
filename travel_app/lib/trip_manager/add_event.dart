@@ -22,14 +22,21 @@ class _AddEventState extends State<AddEvent> {
   String location = "No Location Selected";
   LatLng locCoords;
 
-  //temporary UI
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      title: Text("Add Event"),
-      
+        backgroundColor: Colors.white,
+        title: Text(
+          "Add Event",
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black)),
+        leading: BackButton(
+          color: Colors.black,
+            onPressed: () {
+              Navigator.pop(context);
+            })
       ),
+      
       body:
         SingleChildScrollView(
           child: Container(
@@ -40,9 +47,11 @@ class _AddEventState extends State<AddEvent> {
             children: [
             //Name of Event
               Container(
-                child:
-                  Text("Event Name: ", textScaleFactor: 1, textAlign: TextAlign.left),
-                ),
+                child: Text(
+                    "Event Name ",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+              ),
                 Container(
                   padding: EdgeInsets.only(bottom: 10),
                   width: 0.8 * MediaQuery.of(context).size.width,
@@ -53,57 +62,68 @@ class _AddEventState extends State<AddEvent> {
                     }
                   ),
                 ),
-            //Location
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  //display current selected date
-                  Text("Location: " + location, textScaleFactor: 1, textAlign: TextAlign.left),
-                  RaisedButton(
-                      child: Text('Select'),
-                      onPressed: () {
-                        getLocation();
-                      })
-                ],
-              ),
-            //Description
-              Container(
-                child:
-                  Text("Description: ", textScaleFactor: 1, textAlign: TextAlign.left),
-                ),
-                Container(
-                  padding: EdgeInsets.only(bottom: 10),
-                  width: 0.8 * MediaQuery.of(context).size.width,
-                  child: TextField(
-                    onChanged: (text) {
-                      description = text;
-                    }
-                  ),
-                ),
 
-          //Date Selection
-            //Start Date
-            Container(
-                  child: Text("Start Time: ",
-                    textScaleFactor: 1, textAlign: TextAlign.left),
+            //Location
+              Container(
+                child: Text(
+                  "Location",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  //display current selected date
-                  Text(startTimeString, textScaleFactor: 1, textAlign: TextAlign.left),
+                  Text(
+                    location,
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)
+                  ),
                   RaisedButton(
-                      child: Text('Select'),
-                      onPressed: () {
-                        _getTimes();
-                      })
+                    child: Text('Select'),
+                    color: Colors.white,
+                    onPressed: () {
+                      getLocation();
+                    }
+                  )
                 ],
               ),
-            //End Time
-            Container(
-                  child: Text("End Time: " + endTimeString,
-                    textScaleFactor: 1, textAlign: TextAlign.left),
+
+              //Description
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 10.0),
+                child: Text("Description",
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               ),
+              Container(
+                padding: EdgeInsets.only(bottom: 10),
+                width: 0.8 * MediaQuery.of(context).size.width,
+                child: TextField(onChanged: (text) {
+                  description = text;
+                }),
+              ),
+
+          //Time Selection
+            //Start Time
+            Container(
+                child: Text(
+                  "Start Time:    " + startTimeString,
+                  style:TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              ),
+            //End Date
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 10.0),
+                child: Text(
+                    "End Time:    " + endTimeString,
+                    style:TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              ),
+
+            //Select Dates button
+              RaisedButton(
+                  color: Colors.white,
+                  child: Text('Select Times'),
+                  onPressed: () {
+                    _getTimes();
+                  })
             ]),
       ),
         ),
@@ -158,8 +178,8 @@ class _AddEventState extends State<AddEvent> {
             Scaffold.of(context).showSnackBar(snackbar);
             }         
           },
-          child: Icon(Icons.save),
-          backgroundColor: Colors.blue,
+          child: Icon(Icons.save, color: Colors.black),
+                  backgroundColor: Colors.white,
         )
       )
     );
@@ -172,7 +192,6 @@ class _AddEventState extends State<AddEvent> {
       use24HourFormat: false,
       interval: Duration(minutes: 1),
       start: TimeOfDay(hour: 0, minute: 0),
-      //labels:
     );
     startTime = range.startTime;
     endTime = range.endTime;
@@ -183,9 +202,11 @@ class _AddEventState extends State<AddEvent> {
   }
 
   Future<void> getLocation() async {
-    var loc = await Navigator.push(context, MaterialPageRoute(builder: (context) {return ShowLocation();}));
+    //get location from location selection page
+    var loc = await Navigator.push(context, MaterialPageRoute(builder: (context) {return SelectLocation();}));
     if (loc != null){
       setState(() {
+        //if location returned set event's location
         location = loc[0];
         locCoords = loc[1];
       });
