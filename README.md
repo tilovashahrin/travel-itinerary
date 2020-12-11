@@ -8,7 +8,8 @@ Group members (3-5) (no Student IDs, only names):
 # Project Description
 Our project is based on a Travel Itinerary log, also known as "Travel Log". The user will first be introducted with a login page, if they do not have a log in page they can sign up with the button on the top right, which requires an email and password with at least 6 characters. Once the account it made, user will see our main page. 
 The main page includes a timeline of "Favourite Places" and posts from tour guides with a bottom app bar. 
-On the top app bar is a menu button, logout button and a chart of "Best Time to visit by Month". On the place cards under "Favourite Places" shows three different location. Once clicked, it shows a data table of available flights with the airline, stops and prices. 
+On the top app bar is a menu button, logout button and a chart of "Best Time to visit by Month". On the place cards under "Favourite Places" shows three different location. Once clicked, it shows a data table of available flights with the airline, stops and prices.
+
   On the bottom app bar there is a person icon, once pressed the user will see a page that will display their list of trips. To add a trip the user must click the floating button on the page. Once the information is filled out the trip will be displayed on the page, and when tapped the user will be shown a list of days in the trip. On the list of days there is a gear icon in the top right corner. When clicked, the user will be able to edit or delete the trip. When the user taps a day they are shown a list of events scheduled for that day. The user can create and edit events the same way they can edit trips. When an event is tapped the user is shown a page with the details of the event. There is a gear icon in the top right corner where when tapped the user can edit or delete the event. Changes and additions to the list of trips will only be saved if the user returns to the main page.
 
 ## Overview
