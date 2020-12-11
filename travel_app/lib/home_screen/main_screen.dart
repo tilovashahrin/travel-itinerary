@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:travel_app/trip_manager/add_trip.dart';
 import '../login_screen.dart';
 import 'timeline.dart';
-import '../like_screen.dart';
 import '../trip_manager/view_trip_list.dart';
 import 'appbar_body.dart'; //had to change this to run -riya
 import 'popularPlaces.dart';
@@ -111,28 +109,6 @@ class _MainScreenState extends State<MainScreen> {
                 );
               },
               icon: Icon(Icons.home, size: 40),
-            ),
-            IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Likes(),
-                  ),
-                );
-              },
-              icon: Icon(Icons.favorite, size: 40),
-            ),
-            IconButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AddTrip(),
-                  ),
-                );
-              },
-              icon: Icon(Icons.add, size: 40),
             ),
             IconButton(
               //view user's trips
