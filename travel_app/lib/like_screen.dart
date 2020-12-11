@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'home_screen/timeline.dart';
-import 'home_screen/main_screen.dart';
+import 'home_screen/timeline.dart';
 
 class Likes extends StatefulWidget{
   @override

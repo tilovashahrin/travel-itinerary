@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travel_app/DataTables/LonFlight.dart';
 
+//the place card for London
 class LondonPreview extends StatelessWidget {
   const LondonPreview({
     Key key,

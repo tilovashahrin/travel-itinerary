@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:travel_app/DataTables/OsakaFlight.dart';
 
+//the place card for Japan
 class JapanPreview extends StatelessWidget {
   const JapanPreview({
     Key key,

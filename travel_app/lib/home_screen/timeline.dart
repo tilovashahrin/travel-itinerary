@@ -4,7 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 
-//tilova
+//timeline that holds all the posts below the title and place cards
 class timeline_dataSource{
   static List<User> generateUsers(){
     return[
@@ -182,6 +182,7 @@ class _TweetWidgetState extends State<TweetWidget>{
     });
   }
 
+  //like button that fills heart icon when pressed
   Widget _buildLikeButton(BuildContext context) {
     return Container(
       child: Row(

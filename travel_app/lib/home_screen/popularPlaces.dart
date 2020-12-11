@@ -1,11 +1,15 @@
+/*These Place cards were inspired by a youtube video
+* https://www.youtube.com/watch?v=QM8xTUd-l2Y&ab_channel=TheFlutterWay
+* */
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'JapanPreview.dart';
 import 'LondonPreview.dart';
 import 'BrazilPreview.dart';
-import '../DataTables/OsakaFlight.dart';
+//import '../DataTables/OsakaFlight.dart';
 
+//Place Tiles on the beginning of the main page
 class PopularPlaces extends StatelessWidget{
   const PopularPlaces({Key key}) : super(key: key);
 
@@ -45,6 +49,7 @@ class PopularPlaces extends StatelessWidget{
   }
 }
 
+//Favorite places title
 class PlacesTitle extends StatelessWidget {
   const PlacesTitle({
     Key key,
@@ -69,14 +74,14 @@ class PlacesTitle extends StatelessWidget {
             ),
             textAlign: TextAlign.left,
           ),
-          GestureDetector(
-            onTap: press,
-            child:
-            Text(
-              "See All",
-              textAlign: TextAlign.right,
-            ),
-          ),
+          // GestureDetector(
+          //   onTap: press,
+          //   child:
+          //   Text(
+          //     "See All",
+          //     textAlign: TextAlign.right,
+          //   ),
+          // ),
         ],
       ),
     );

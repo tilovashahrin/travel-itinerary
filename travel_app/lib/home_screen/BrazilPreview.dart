@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:travel_app/DataTables/BrazilFlight.dart';
 
+//the place card for Brazil
 class BrazilPreview extends StatelessWidget {
   const BrazilPreview({
     Key key,

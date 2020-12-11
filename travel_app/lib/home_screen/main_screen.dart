@@ -79,6 +79,7 @@ class _MainScreenState extends State<MainScreen> {
         ],
       ),
 
+      //Posts made by tour guides
       body:
       ListView(
         children: <Widget>[
@@ -92,6 +93,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ], //ListView
       ),
+      //app bar for the bottom part of the screen
       bottomNavigationBar: BottomAppBar(
         child: Row(
           mainAxisSize: MainAxisSize.max,

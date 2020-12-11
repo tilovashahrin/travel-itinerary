@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'searchBar.dart';
 
-
+//top picture of main page with title
 class App_Body extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
